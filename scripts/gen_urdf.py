@@ -117,10 +117,13 @@ def positioner():
     # tilting L-arm. Frame m1: z = tilt axis (world x), y = normal of the faceplate.
     arm = [
         vis(cyl(0.10, 0.06), 'fanuc_gray', (0, 0, -0.29)),                        # hub on the flange
-        vis(box(0.26, 0.10, 0.34), 'fanuc_yellow', (0, -0.04, -0.14)),            # arm
-        vis(cyl(0.20, 0.12), 'fanuc_yellow', (0, 0.02, 0.02), (PI2, 0, 0)),       # rotary housing
-        vis(cyl(0.07, 0.18), 'motor', (0, -0.13, 0.12), (PI2, 0, 0)),             # rotation servo
-        vis(cyl(0.075, 0.025), 'fanuc_gray', (0, -0.225, 0.12), (PI2, 0, 0)),
+        vis(box(0.36, 0.30, 0.04), 'fanuc_yellow', (0, -0.02, -0.30)),            # side plate of the L
+        vis(box(0.50, 0.04, 0.58), 'fanuc_yellow', (0, -0.07, -0.01)),            # tilt table
+        vis(box(0.50, 0.012, 0.58), 'fanuc_gray', (0, -0.096, -0.01)),            # edge under the table
+        vis(box(0.30, 0.10, 0.04), 'fanuc_yellow', (0, -0.15, -0.27)),            # gusset
+        vis(cyl(0.20, 0.14), 'fanuc_yellow', (0, 0.02, 0), (PI2, 0, 0)),          # rotary housing
+        vis(cyl(0.07, 0.15), 'motor', (0, -0.165, 0), (PI2, 0, 0)),               # rotation servo
+        vis(cyl(0.075, 0.025), 'fanuc_gray', (0, -0.25, 0), (PI2, 0, 0)),
     ]
     out.append(link('positioner_link_1', arm, 5, 0.1))
     out.append(joint('positioner_joint_1', 'positioner_base', 'positioner_link_1', (0, 0, 0),
