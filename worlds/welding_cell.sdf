@@ -109,12 +109,12 @@
     <model name="gas_cylinder"><static>true</static><pose>0.55 1.95 -0.15 0 0 0</pose><link name="l">
       <visual name="v"><geometry><cylinder><radius>0.11</radius><length>1.2</length></cylinder></geometry><material><ambient>0.15 0.4 0.2 1</ambient><diffuse>0.15 0.4 0.2 1</diffuse></material></visual>
       <visual name="cap"><pose>0 0 0.65 0 0 0</pose><geometry><sphere><radius>0.1</radius></sphere></geometry><material><ambient>0.6 0.6 0.6 1</ambient><diffuse>0.6 0.6 0.6 1</diffuse></material></visual></link></model>
-    <include><name>cabinet_yellow</name><pose>3.6 2.6 -0.75 0 0 3.14</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/MetalCabinetYellow</uri></include>
-    <include><name>extinguisher</name><pose>2.9 3.3 -0.75 0 0 0</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Fire%20Extinguisher</uri></include>
-    <include><name>rack</name><pose>-2.5 3.0 -0.75 0 0 0</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pallet_Rack_Section</uri></include>
-    <include><name>pallet</name><pose>2.9 -0.6 -0.75 0 0 0.3</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Euro%20pallet</uri></include>
-    <include><name>pallet_jack</name><pose>3.2 1.0 -0.75 0 0 2.2</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pallet_Jack</uri></include>
+    <include><name>cabinet_yellow</name><pose>3.3 2.95 -0.75 0 0 3.14</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/MetalCabinetYellow</uri></include>
+    <include><name>extinguisher</name><pose>2.7 3.3 -0.75 0 0 0</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Fire%20Extinguisher</uri></include>
+    <include><name>rack</name><pose>-2.4 2.88 -0.75 0 0 0</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pallet_Rack_Section</uri></include>
+    <include><name>pallet</name><pose>3.2 -0.9 -0.75 0 0 1.5708</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Euro%20pallet</uri></include>
+    <include><name>pallet_jack</name><pose>3.3 1.6 -0.75 0 0 0</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pallet_Jack</uri></include>
     <include><name>table</name><pose>-1.9 0.4 -0.75 0 0 1.57</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Table</uri></include>
-    <include><name>shelf</name><pose>1.6 3.2 -0.75 0 0 0</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/SquareShelf</uri></include>
+    <include><name>shelf</name><pose>1.4 3.0 -0.75 0 0 0</pose><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/SquareShelf</uri></include>
   </world>
 </sdf>

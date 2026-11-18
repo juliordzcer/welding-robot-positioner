@@ -59,7 +59,11 @@ T_6_H = hom(ry(RHO), [DHX, DHY, DHZ])
 T_E_M0 = hom(np.array([[np.cos(MU), 0, np.sin(MU)],
                        [np.sin(MU), 0, -np.cos(MU)],
                        [0, 1, 0]]), [XM0, YM0, ZM0])
-T_M2_K = np.eye(4)     # workpiece frame on the platform
+# Workpiece frame on the platform. The paper does not give it: the seam starts
+# ZK above the faceplate, so that the torch clears the faceplate and the chuck.
+ZK = 0.150
+T_M2_K = hom(np.eye(3), [0, 0, ZK])
+CHUCK_R, CHUCK_H, PLATE_R = 0.150, 0.070, 0.260   # chuck and faceplate (gen_urdf.py)
 
 
 def robot_frames(q):
@@ -218,6 +222,34 @@ def torch_in_flange():
     return R, p
 
 
+def torch_points(q):
+    """Points of the wrist and torch in Sigma_e, with their radius [m]."""
+    T6 = T_E_0 @ robot_frames(q)[-1]
+    w, z6 = T6[:3, 3], T6[:3, 2]
+    tip = (T6 @ T_6_H)[:3, 3]
+    flange = w + 0.100 * z6
+    pts = [(w, 0.07), (flange, 0.05)]
+    pts += [(flange + s * 0.30 * z6, 0.025) for s in np.linspace(0.2, 1.0, 5)]
+    neck0 = flange + 0.30 * z6
+    pts += [(neck0 + s * (tip - neck0), 0.018) for s in np.linspace(0.25, 0.75, 3)]
+    return pts
+
+
+def clearance(q, t, phi1=PHI1):
+    """Smallest gap [m] between wrist/torch and the faceplate or the chuck (< 0 = collision)."""
+    T_k_e = np.linalg.inv(T_E_M0 @ positioner(phi1, phi2(t)) @ T_M2_K)
+    gap = np.inf
+    for p, r in torch_points(q):
+        x, y, z = (T_k_e @ np.append(p, 1.0))[:3]
+        h = z + ZK                       # height above the faceplate
+        rho = np.hypot(x, y)
+        if rho - r < PLATE_R:
+            gap = min(gap, h - r)
+        if rho - r < CHUCK_R:
+            gap = min(gap, h - r - CHUCK_H)
+    return gap
+
+
 def mixed(wt, wr):
     """Mixed manipulability of one path point, eq. (25)."""
     pair = np.array([wt, wr])
@@ -248,7 +280,7 @@ def plan(n=801, phi1_fn=lambda t: PHI1):
         if not ok:
             raise RuntimeError(f"IK failed at t={ti:.2f}s")
         wt, wr = manipulabilities(q)
-        rows.append([ti, p1, phi2(ti), psi(ti), *dh_to_urdf(q), wt, wr])
+        rows.append([ti, p1, phi2(ti), psi(ti), *dh_to_urdf(q), wt, wr, clearance(q, ti, p1)])
     return np.array(rows)
 
 
@@ -272,6 +304,8 @@ def score(phi1_fn, n=81):
         return 1.0
     if np.any(np.abs(np.diff(np.unwrap(d[:, 4:10], axis=0), axis=0)) > 0.4):  # change of posture
         return 1.0
+    if d[:, 12].min() < 0.01:                                 # torch must clear the chuck
+        return 1.0
     return objective([mixed(a, b) for a, b in zip(d[:, 10], d[:, 11])])
 
 
@@ -287,7 +321,7 @@ def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."
     study = len(sys.argv) > 2 and sys.argv[2] == "two_axis"
     os.makedirs(out, exist_ok=True)
-    hdr = "t,phi1,phi2,psi,joint_1,joint_2,joint_3,joint_4,joint_5,joint_6,wT,wR"
+    hdr = "t,phi1,phi2,psi,joint_1,joint_2,joint_3,joint_4,joint_5,joint_6,wT,wR,clearance"
     if study:
         x, f = optimize_two_axis()
         print("phi1 knots [deg]:", np.round(np.degrees(x), 2), " f =", round(f, 4))
@@ -299,7 +333,7 @@ def main():
     np.savetxt(os.path.join(out, name), data, delimiter=",", header=hdr, comments="")
     w = [mixed(a, b) for a, b in zip(data[:, 10], data[:, 11])]
     print(f"{name}: f = {objective(w):.4f}, min wT* = {data[:, 10].min():.3f}, "
-          f"min wR = {data[:, 11].min():.3f}")
+          f"min wR = {data[:, 11].min():.3f}, min clearance = {1000 * data[:, 12].min():.0f} mm")
 
 
 if __name__ == "__main__":

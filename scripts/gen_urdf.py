@@ -133,16 +133,17 @@ def positioner():
     for k in range(4):                                                            # T-slots
         a = k * math.pi / 4
         plate.append(vis(box(0.50, 0.018, 0.004), 'slot', (0, 0, 0.0005), (0, 0, a)))
-    plate.append(vis(cyl(0.135, 0.05), 'dark', (0, 0, 0.025)))                    # 3-jaw chuck
+    plate.append(vis(cyl(0.150, 0.035), 'dark', (0, 0, 0.0175)))                  # 3-jaw chuck
     for k in range(3):
         a = 2 * math.pi * k / 3 + 0.5
-        plate.append(vis(box(0.05, 0.035, 0.07), 'steel',
-                         (0.125 * math.cos(a), 0.125 * math.sin(a), 0.05), (0, 0, a)))
-    plate.append(vis(cyl(0.100, 0.45), 'pipe', (0, 0, 0.225)))                     # pipe
-    plate.append(vis(cyl(0.088, 0.003), 'dark', (0, 0, 0.4515)))                   # bore
+        plate.append(vis(box(0.045, 0.035, 0.05), 'steel',
+                         (0.122 * math.cos(a), 0.122 * math.sin(a), 0.045), (0, 0, a)))
+    zk, top = 0.150, 0.150 + 0.45 + 0.03      # seam starts 0.15 m above the faceplate (planner.ZK)
+    plate.append(vis(cyl(0.100, top), 'pipe', (0, 0, top / 2)))                    # pipe
+    plate.append(vis(cyl(0.088, 0.003), 'dark', (0, 0, top + 0.0015)))             # bore
     # chalk guide line of the helical seam (Fig. 4)
     N, r, h = 120, 0.1008, 0.45
-    pts = [np.array([r * math.cos(2 * math.pi * i / N), r * math.sin(2 * math.pi * i / N), h * i / N])
+    pts = [np.array([r * math.cos(2 * math.pi * i / N), r * math.sin(2 * math.pi * i / N), zk + h * i / N])
            for i in range(N + 1)]
     for a, b in zip(pts, pts[1:]):
         m, d = (a + b) / 2, b - a

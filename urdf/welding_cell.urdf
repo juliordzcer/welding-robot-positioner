@@ -163,132 +163,132 @@
     <visual><origin xyz="0.0000 0.0000 0.0005" rpy="0.0000 0.0000 0.7854"/><geometry><box size="0.5 0.018 0.004"/></geometry><material name="slot"/></visual>
     <visual><origin xyz="0.0000 0.0000 0.0005" rpy="0.0000 0.0000 1.5708"/><geometry><box size="0.5 0.018 0.004"/></geometry><material name="slot"/></visual>
     <visual><origin xyz="0.0000 0.0000 0.0005" rpy="0.0000 0.0000 2.3562"/><geometry><box size="0.5 0.018 0.004"/></geometry><material name="slot"/></visual>
-    <visual><origin xyz="0.0000 0.0000 0.0250" rpy="0.0000 0.0000 0.0000"/><geometry><cylinder radius="0.135" length="0.05"/></geometry><material name="dark"/></visual>
-    <visual><origin xyz="0.1097 0.0599 0.0500" rpy="0.0000 0.0000 0.5000"/><geometry><box size="0.05 0.035 0.07"/></geometry><material name="steel"/></visual>
-    <visual><origin xyz="-0.1067 0.0650 0.0500" rpy="0.0000 0.0000 2.5944"/><geometry><box size="0.05 0.035 0.07"/></geometry><material name="steel"/></visual>
-    <visual><origin xyz="-0.0029 -0.1250 0.0500" rpy="0.0000 0.0000 4.6888"/><geometry><box size="0.05 0.035 0.07"/></geometry><material name="steel"/></visual>
-    <visual><origin xyz="0.0000 0.0000 0.2250" rpy="0.0000 0.0000 0.0000"/><geometry><cylinder radius="0.1" length="0.45"/></geometry><material name="pipe"/></visual>
-    <visual><origin xyz="0.0000 0.0000 0.4515" rpy="0.0000 0.0000 0.0000"/><geometry><cylinder radius="0.088" length="0.003"/></geometry><material name="dark"/></visual>
-    <visual><origin xyz="0.1007 0.0026 0.0019" rpy="0.0000 0.9530 1.5970"/><geometry><cylinder radius="0.0012" length="0.006797653937262971"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.1005 0.0079 0.0056" rpy="0.0000 0.9530 1.6493"/><geometry><cylinder radius="0.0012" length="0.00679765393726297"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0999 0.0132 0.0094" rpy="0.0000 0.9530 1.7017"/><geometry><cylinder radius="0.0012" length="0.00679765393726297"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0991 0.0184 0.0131" rpy="0.0000 0.9530 1.7541"/><geometry><cylinder radius="0.0012" length="0.00679765393726297"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0980 0.0235 0.0169" rpy="0.0000 0.9530 1.8064"/><geometry><cylinder radius="0.0012" length="0.0067976539372629685"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0966 0.0286 0.0206" rpy="0.0000 0.9530 1.8588"/><geometry><cylinder radius="0.0012" length="0.006797653937262974"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0950 0.0336 0.0244" rpy="0.0000 0.9530 1.9111"/><geometry><cylinder radius="0.0012" length="0.006797653937262969"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0931 0.0386 0.0281" rpy="0.0000 0.9530 1.9635"/><geometry><cylinder radius="0.0012" length="0.006797653937262973"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0909 0.0434 0.0319" rpy="0.0000 0.9530 2.0159"/><geometry><cylinder radius="0.0012" length="0.006797653937262963"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0886 0.0481 0.0356" rpy="0.0000 0.9530 2.0682"/><geometry><cylinder radius="0.0012" length="0.00679765393726297"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0859 0.0526 0.0394" rpy="0.0000 0.9530 2.1206"/><geometry><cylinder radius="0.0012" length="0.006797653937262974"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0830 0.0571 0.0431" rpy="0.0000 0.9530 2.1729"/><geometry><cylinder radius="0.0012" length="0.006797653937262977"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0799 0.0613 0.0469" rpy="0.0000 0.9530 2.2253"/><geometry><cylinder radius="0.0012" length="0.006797653937262974"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0766 0.0654 0.0506" rpy="0.0000 0.9530 2.2777"/><geometry><cylinder radius="0.0012" length="0.006797653937262962"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0731 0.0694 0.0544" rpy="0.0000 0.9530 2.3300"/><geometry><cylinder radius="0.0012" length="0.006797653937262977"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0694 0.0731 0.0581" rpy="0.0000 0.9530 2.3824"/><geometry><cylinder radius="0.0012" length="0.0067976539372629685"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0654 0.0766 0.0619" rpy="0.0000 0.9530 2.4347"/><geometry><cylinder radius="0.0012" length="0.00679765393726297"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0613 0.0799 0.0656" rpy="0.0000 0.9530 2.4871"/><geometry><cylinder radius="0.0012" length="0.00679765393726297"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0571 0.0830 0.0694" rpy="0.0000 0.9530 2.5395"/><geometry><cylinder radius="0.0012" length="0.006797653937262964"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0526 0.0859 0.0731" rpy="0.0000 0.9530 2.5918"/><geometry><cylinder radius="0.0012" length="0.006797653937262966"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0481 0.0886 0.0769" rpy="0.0000 0.9530 2.6442"/><geometry><cylinder radius="0.0012" length="0.006797653937262988"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0434 0.0909 0.0806" rpy="0.0000 0.9530 2.6965"/><geometry><cylinder radius="0.0012" length="0.006797653937262955"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0386 0.0931 0.0844" rpy="0.0000 0.9530 2.7489"/><geometry><cylinder radius="0.0012" length="0.00679765393726297"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0336 0.0950 0.0881" rpy="0.0000 0.9530 2.8013"/><geometry><cylinder radius="0.0012" length="0.0067976539372629876"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0286 0.0966 0.0919" rpy="0.0000 0.9530 2.8536"/><geometry><cylinder radius="0.0012" length="0.006797653937262971"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0235 0.0980 0.0956" rpy="0.0000 0.9530 2.9060"/><geometry><cylinder radius="0.0012" length="0.006797653937262978"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0184 0.0991 0.0994" rpy="0.0000 0.9530 2.9583"/><geometry><cylinder radius="0.0012" length="0.006797653937262961"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0132 0.0999 0.1031" rpy="0.0000 0.9530 3.0107"/><geometry><cylinder radius="0.0012" length="0.0067976539372629685"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0079 0.1005 0.1069" rpy="0.0000 0.9530 3.0631"/><geometry><cylinder radius="0.0012" length="0.00679765393726298"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0026 0.1007 0.1106" rpy="0.0000 0.9530 3.1154"/><geometry><cylinder radius="0.0012" length="0.006797653937262942"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0026 0.1007 0.1144" rpy="0.0000 0.9530 -3.1154"/><geometry><cylinder radius="0.0012" length="0.00679765393726298"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0079 0.1005 0.1181" rpy="0.0000 0.9530 -3.0631"/><geometry><cylinder radius="0.0012" length="0.00679765393726298"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0132 0.0999 0.1219" rpy="0.0000 0.9530 -3.0107"/><geometry><cylinder radius="0.0012" length="0.006797653937262971"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0184 0.0991 0.1256" rpy="0.0000 0.9530 -2.9583"/><geometry><cylinder radius="0.0012" length="0.006797653937262979"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0235 0.0980 0.1294" rpy="0.0000 0.9530 -2.9060"/><geometry><cylinder radius="0.0012" length="0.006797653937262961"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0286 0.0966 0.1331" rpy="0.0000 0.9530 -2.8536"/><geometry><cylinder radius="0.0012" length="0.006797653937262961"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0336 0.0950 0.1369" rpy="0.0000 0.9530 -2.8013"/><geometry><cylinder radius="0.0012" length="0.006797653937262996"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0386 0.0931 0.1406" rpy="0.0000 0.9530 -2.7489"/><geometry><cylinder radius="0.0012" length="0.006797653937262957"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0434 0.0909 0.1444" rpy="0.0000 0.9530 -2.6965"/><geometry><cylinder radius="0.0012" length="0.00679765393726298"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0481 0.0886 0.1481" rpy="0.0000 0.9530 -2.6442"/><geometry><cylinder radius="0.0012" length="0.006797653937262948"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0526 0.0859 0.1519" rpy="0.0000 0.9530 -2.5918"/><geometry><cylinder radius="0.0012" length="0.006797653937262957"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0571 0.0830 0.1556" rpy="0.0000 0.9530 -2.5395"/><geometry><cylinder radius="0.0012" length="0.006797653937263017"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0613 0.0799 0.1594" rpy="0.0000 0.9530 -2.4871"/><geometry><cylinder radius="0.0012" length="0.006797653937262949"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0654 0.0766 0.1631" rpy="0.0000 0.9530 -2.4347"/><geometry><cylinder radius="0.0012" length="0.006797653937262957"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0694 0.0731 0.1669" rpy="0.0000 0.9530 -2.3824"/><geometry><cylinder radius="0.0012" length="0.006797653937263002"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0731 0.0694 0.1706" rpy="0.0000 0.9530 -2.3300"/><geometry><cylinder radius="0.0012" length="0.006797653937262935"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0766 0.0654 0.1744" rpy="0.0000 0.9530 -2.2777"/><geometry><cylinder radius="0.0012" length="0.006797653937263017"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0799 0.0613 0.1781" rpy="0.0000 0.9530 -2.2253"/><geometry><cylinder radius="0.0012" length="0.006797653937262952"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0830 0.0571 0.1819" rpy="0.0000 0.9530 -2.1729"/><geometry><cylinder radius="0.0012" length="0.006797653937262945"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0859 0.0526 0.1856" rpy="0.0000 0.9530 -2.1206"/><geometry><cylinder radius="0.0012" length="0.006797653937263006"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0886 0.0481 0.1894" rpy="0.0000 0.9530 -2.0682"/><geometry><cylinder radius="0.0012" length="0.006797653937262953"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0909 0.0434 0.1931" rpy="0.0000 0.9530 -2.0159"/><geometry><cylinder radius="0.0012" length="0.006797653937263001"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0931 0.0386 0.1969" rpy="0.0000 0.9530 -1.9635"/><geometry><cylinder radius="0.0012" length="0.006797653937262957"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0950 0.0336 0.2006" rpy="0.0000 0.9530 -1.9111"/><geometry><cylinder radius="0.0012" length="0.006797653937262966"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0966 0.0286 0.2044" rpy="0.0000 0.9530 -1.8588"/><geometry><cylinder radius="0.0012" length="0.00679765393726298"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0980 0.0235 0.2081" rpy="0.0000 0.9530 -1.8064"/><geometry><cylinder radius="0.0012" length="0.006797653937262957"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0991 0.0184 0.2119" rpy="0.0000 0.9530 -1.7541"/><geometry><cylinder radius="0.0012" length="0.006797653937262975"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0999 0.0132 0.2156" rpy="0.0000 0.9530 -1.7017"/><geometry><cylinder radius="0.0012" length="0.006797653937262984"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.1005 0.0079 0.2194" rpy="0.0000 0.9530 -1.6493"/><geometry><cylinder radius="0.0012" length="0.006797653937262959"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.1007 0.0026 0.2231" rpy="0.0000 0.9530 -1.5970"/><geometry><cylinder radius="0.0012" length="0.006797653937262921"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.1007 -0.0026 0.2269" rpy="0.0000 0.9530 -1.5446"/><geometry><cylinder radius="0.0012" length="0.0067976539372629815"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.1005 -0.0079 0.2306" rpy="0.0000 0.9530 -1.4923"/><geometry><cylinder radius="0.0012" length="0.006797653937262975"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0999 -0.0132 0.2344" rpy="0.0000 0.9530 -1.4399"/><geometry><cylinder radius="0.0012" length="0.006797653937262996"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0991 -0.0184 0.2381" rpy="0.0000 0.9530 -1.3875"/><geometry><cylinder radius="0.0012" length="0.006797653937262964"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0980 -0.0235 0.2419" rpy="0.0000 0.9530 -1.3352"/><geometry><cylinder radius="0.0012" length="0.006797653937262943"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0966 -0.0286 0.2456" rpy="0.0000 0.9530 -1.2828"/><geometry><cylinder radius="0.0012" length="0.006797653937262997"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0950 -0.0336 0.2494" rpy="0.0000 0.9530 -1.2305"/><geometry><cylinder radius="0.0012" length="0.006797653937262973"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0931 -0.0386 0.2531" rpy="0.0000 0.9530 -1.1781"/><geometry><cylinder radius="0.0012" length="0.0067976539372629876"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0909 -0.0434 0.2569" rpy="0.0000 0.9530 -1.1257"/><geometry><cylinder radius="0.0012" length="0.006797653937262942"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0886 -0.0481 0.2606" rpy="0.0000 0.9530 -1.0734"/><geometry><cylinder radius="0.0012" length="0.00679765393726297"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0859 -0.0526 0.2644" rpy="0.0000 0.9530 -1.0210"/><geometry><cylinder radius="0.0012" length="0.006797653937262989"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0830 -0.0571 0.2681" rpy="0.0000 0.9530 -0.9687"/><geometry><cylinder radius="0.0012" length="0.006797653937262938"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0799 -0.0613 0.2719" rpy="0.0000 0.9530 -0.9163"/><geometry><cylinder radius="0.0012" length="0.0067976539372629815"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0766 -0.0654 0.2756" rpy="0.0000 0.9530 -0.8639"/><geometry><cylinder radius="0.0012" length="0.006797653937263008"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0731 -0.0694 0.2794" rpy="0.0000 0.9530 -0.8116"/><geometry><cylinder radius="0.0012" length="0.006797653937262952"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0694 -0.0731 0.2831" rpy="0.0000 0.9530 -0.7592"/><geometry><cylinder radius="0.0012" length="0.006797653937262969"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0654 -0.0766 0.2869" rpy="0.0000 0.9530 -0.7069"/><geometry><cylinder radius="0.0012" length="0.006797653937262942"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0613 -0.0799 0.2906" rpy="0.0000 0.9530 -0.6545"/><geometry><cylinder radius="0.0012" length="0.006797653937263021"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0571 -0.0830 0.2944" rpy="0.0000 0.9530 -0.6021"/><geometry><cylinder radius="0.0012" length="0.006797653937262975"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0526 -0.0859 0.2981" rpy="0.0000 0.9530 -0.5498"/><geometry><cylinder radius="0.0012" length="0.006797653937262904"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0481 -0.0886 0.3019" rpy="0.0000 0.9530 -0.4974"/><geometry><cylinder radius="0.0012" length="0.006797653937263024"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0434 -0.0909 0.3056" rpy="0.0000 0.9530 -0.4451"/><geometry><cylinder radius="0.0012" length="0.006797653937262904"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0386 -0.0931 0.3094" rpy="0.0000 0.9530 -0.3927"/><geometry><cylinder radius="0.0012" length="0.006797653937263085"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0336 -0.0950 0.3131" rpy="0.0000 0.9530 -0.3403"/><geometry><cylinder radius="0.0012" length="0.006797653937262945"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0286 -0.0966 0.3169" rpy="0.0000 0.9530 -0.2880"/><geometry><cylinder radius="0.0012" length="0.006797653937262947"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0235 -0.0980 0.3206" rpy="0.0000 0.9530 -0.2356"/><geometry><cylinder radius="0.0012" length="0.006797653937262936"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0184 -0.0991 0.3244" rpy="0.0000 0.9530 -0.1833"/><geometry><cylinder radius="0.0012" length="0.006797653937262982"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0132 -0.0999 0.3281" rpy="0.0000 0.9530 -0.1309"/><geometry><cylinder radius="0.0012" length="0.006797653937262938"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0079 -0.1005 0.3319" rpy="0.0000 0.9530 -0.0785"/><geometry><cylinder radius="0.0012" length="0.006797653937263092"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="-0.0026 -0.1007 0.3356" rpy="0.0000 0.9530 -0.0262"/><geometry><cylinder radius="0.0012" length="0.006797653937262905"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0026 -0.1007 0.3394" rpy="0.0000 0.9530 0.0262"/><geometry><cylinder radius="0.0012" length="0.0067976539372629815"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0079 -0.1005 0.3431" rpy="0.0000 0.9530 0.0785"/><geometry><cylinder radius="0.0012" length="0.006797653937262904"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0132 -0.0999 0.3469" rpy="0.0000 0.9530 0.1309"/><geometry><cylinder radius="0.0012" length="0.006797653937263016"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0184 -0.0991 0.3506" rpy="0.0000 0.9530 0.1833"/><geometry><cylinder radius="0.0012" length="0.006797653937263015"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0235 -0.0980 0.3544" rpy="0.0000 0.9530 0.2356"/><geometry><cylinder radius="0.0012" length="0.006797653937262979"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0286 -0.0966 0.3581" rpy="0.0000 0.9530 0.2880"/><geometry><cylinder radius="0.0012" length="0.0067976539372629425"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0336 -0.0950 0.3619" rpy="0.0000 0.9530 0.3403"/><geometry><cylinder radius="0.0012" length="0.00679765393726287"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0386 -0.0931 0.3656" rpy="0.0000 0.9530 0.3927"/><geometry><cylinder radius="0.0012" length="0.006797653937263016"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0434 -0.0909 0.3694" rpy="0.0000 0.9530 0.4451"/><geometry><cylinder radius="0.0012" length="0.006797653937263012"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0481 -0.0886 0.3731" rpy="0.0000 0.9530 0.4974"/><geometry><cylinder radius="0.0012" length="0.00679765393726299"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0526 -0.0859 0.3769" rpy="0.0000 0.9530 0.5498"/><geometry><cylinder radius="0.0012" length="0.006797653937262932"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0571 -0.0830 0.3806" rpy="0.0000 0.9530 0.6021"/><geometry><cylinder radius="0.0012" length="0.006797653937262975"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0613 -0.0799 0.3844" rpy="0.0000 0.9530 0.6545"/><geometry><cylinder radius="0.0012" length="0.006797653937262942"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0654 -0.0766 0.3881" rpy="0.0000 0.9530 0.7069"/><geometry><cylinder radius="0.0012" length="0.0067976539372630596"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0694 -0.0731 0.3919" rpy="0.0000 0.9530 0.7592"/><geometry><cylinder radius="0.0012" length="0.00679765393726291"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0731 -0.0694 0.3956" rpy="0.0000 0.9530 0.8116"/><geometry><cylinder radius="0.0012" length="0.00679765393726302"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0766 -0.0654 0.3994" rpy="0.0000 0.9530 0.8639"/><geometry><cylinder radius="0.0012" length="0.006797653937262897"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0799 -0.0613 0.4031" rpy="0.0000 0.9530 0.9163"/><geometry><cylinder radius="0.0012" length="0.006797653937263012"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0830 -0.0571 0.4069" rpy="0.0000 0.9530 0.9687"/><geometry><cylinder radius="0.0012" length="0.006797653937262946"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0859 -0.0526 0.4106" rpy="0.0000 0.9530 1.0210"/><geometry><cylinder radius="0.0012" length="0.006797653937263024"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0886 -0.0481 0.4144" rpy="0.0000 0.9530 1.0734"/><geometry><cylinder radius="0.0012" length="0.006797653937262938"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0909 -0.0434 0.4181" rpy="0.0000 0.9530 1.1257"/><geometry><cylinder radius="0.0012" length="0.006797653937262979"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0931 -0.0386 0.4219" rpy="0.0000 0.9530 1.1781"/><geometry><cylinder radius="0.0012" length="0.006797653937262936"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0950 -0.0336 0.4256" rpy="0.0000 0.9530 1.2305"/><geometry><cylinder radius="0.0012" length="0.006797653937263023"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0966 -0.0286 0.4294" rpy="0.0000 0.9530 1.2828"/><geometry><cylinder radius="0.0012" length="0.006797653937262977"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0980 -0.0235 0.4331" rpy="0.0000 0.9530 1.3352"/><geometry><cylinder radius="0.0012" length="0.0067976539372629815"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0991 -0.0184 0.4369" rpy="0.0000 0.9530 1.3875"/><geometry><cylinder radius="0.0012" length="0.006797653937262901"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.0999 -0.0132 0.4406" rpy="0.0000 0.9530 1.4399"/><geometry><cylinder radius="0.0012" length="0.006797653937263018"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.1005 -0.0079 0.4444" rpy="0.0000 0.9530 1.4923"/><geometry><cylinder radius="0.0012" length="0.006797653937262938"/></geometry><material name="chalk"/></visual>
-    <visual><origin xyz="0.1007 -0.0026 0.4481" rpy="0.0000 0.9530 1.5446"/><geometry><cylinder radius="0.0012" length="0.006797653937262905"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0000 0.0000 0.0175" rpy="0.0000 0.0000 0.0000"/><geometry><cylinder radius="0.15" length="0.035"/></geometry><material name="dark"/></visual>
+    <visual><origin xyz="0.1071 0.0585 0.0450" rpy="0.0000 0.0000 0.5000"/><geometry><box size="0.045 0.035 0.05"/></geometry><material name="steel"/></visual>
+    <visual><origin xyz="-0.1042 0.0635 0.0450" rpy="0.0000 0.0000 2.5944"/><geometry><box size="0.045 0.035 0.05"/></geometry><material name="steel"/></visual>
+    <visual><origin xyz="-0.0029 -0.1220 0.0450" rpy="0.0000 0.0000 4.6888"/><geometry><box size="0.045 0.035 0.05"/></geometry><material name="steel"/></visual>
+    <visual><origin xyz="0.0000 0.0000 0.3150" rpy="0.0000 0.0000 0.0000"/><geometry><cylinder radius="0.1" length="0.63"/></geometry><material name="pipe"/></visual>
+    <visual><origin xyz="0.0000 0.0000 0.6315" rpy="0.0000 0.0000 0.0000"/><geometry><cylinder radius="0.088" length="0.003"/></geometry><material name="dark"/></visual>
+    <visual><origin xyz="0.1007 0.0026 0.1519" rpy="0.0000 0.9530 1.5970"/><geometry><cylinder radius="0.0012" length="0.006797653937262973"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.1005 0.0079 0.1556" rpy="0.0000 0.9530 1.6493"/><geometry><cylinder radius="0.0012" length="0.006797653937262973"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0999 0.0132 0.1594" rpy="0.0000 0.9530 1.7017"/><geometry><cylinder radius="0.0012" length="0.006797653937262971"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0991 0.0184 0.1631" rpy="0.0000 0.9530 1.7541"/><geometry><cylinder radius="0.0012" length="0.006797653937262973"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0980 0.0235 0.1669" rpy="0.0000 0.9530 1.8064"/><geometry><cylinder radius="0.0012" length="0.006797653937262955"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0966 0.0286 0.1706" rpy="0.0000 0.9530 1.8588"/><geometry><cylinder radius="0.0012" length="0.006797653937262974"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0950 0.0336 0.1744" rpy="0.0000 0.9530 1.9111"/><geometry><cylinder radius="0.0012" length="0.006797653937262974"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0931 0.0386 0.1781" rpy="0.0000 0.9530 1.9635"/><geometry><cylinder radius="0.0012" length="0.006797653937262973"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0909 0.0434 0.1819" rpy="0.0000 0.9530 2.0159"/><geometry><cylinder radius="0.0012" length="0.0067976539372629685"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0886 0.0481 0.1856" rpy="0.0000 0.9530 2.0682"/><geometry><cylinder radius="0.0012" length="0.00679765393726297"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0859 0.0526 0.1894" rpy="0.0000 0.9530 2.1206"/><geometry><cylinder radius="0.0012" length="0.006797653937262974"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0830 0.0571 0.1931" rpy="0.0000 0.9530 2.1729"/><geometry><cylinder radius="0.0012" length="0.006797653937262977"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0799 0.0613 0.1969" rpy="0.0000 0.9530 2.2253"/><geometry><cylinder radius="0.0012" length="0.0067976539372629615"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0766 0.0654 0.2006" rpy="0.0000 0.9530 2.2777"/><geometry><cylinder radius="0.0012" length="0.006797653937262967"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0731 0.0694 0.2044" rpy="0.0000 0.9530 2.3300"/><geometry><cylinder radius="0.0012" length="0.006797653937262977"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0694 0.0731 0.2081" rpy="0.0000 0.9530 2.3824"/><geometry><cylinder radius="0.0012" length="0.0067976539372629685"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0654 0.0766 0.2119" rpy="0.0000 0.9530 2.4347"/><geometry><cylinder radius="0.0012" length="0.006797653937262974"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0613 0.0799 0.2156" rpy="0.0000 0.9530 2.4871"/><geometry><cylinder radius="0.0012" length="0.0067976539372629615"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0571 0.0830 0.2194" rpy="0.0000 0.9530 2.5395"/><geometry><cylinder radius="0.0012" length="0.006797653937262972"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0526 0.0859 0.2231" rpy="0.0000 0.9530 2.5918"/><geometry><cylinder radius="0.0012" length="0.006797653937262957"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0481 0.0886 0.2269" rpy="0.0000 0.9530 2.6442"/><geometry><cylinder radius="0.0012" length="0.006797653937262997"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0434 0.0909 0.2306" rpy="0.0000 0.9530 2.6965"/><geometry><cylinder radius="0.0012" length="0.006797653937262947"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0386 0.0931 0.2344" rpy="0.0000 0.9530 2.7489"/><geometry><cylinder radius="0.0012" length="0.006797653937262979"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0336 0.0950 0.2381" rpy="0.0000 0.9530 2.8013"/><geometry><cylinder radius="0.0012" length="0.00679765393726298"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0286 0.0966 0.2419" rpy="0.0000 0.9530 2.8536"/><geometry><cylinder radius="0.0012" length="0.00679765393726298"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0235 0.0980 0.2456" rpy="0.0000 0.9530 2.9060"/><geometry><cylinder radius="0.0012" length="0.006797653937262978"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0184 0.0991 0.2494" rpy="0.0000 0.9530 2.9583"/><geometry><cylinder radius="0.0012" length="0.006797653937262944"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0132 0.0999 0.2531" rpy="0.0000 0.9530 3.0107"/><geometry><cylinder radius="0.0012" length="0.006797653937262994"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0079 0.1005 0.2569" rpy="0.0000 0.9530 3.0631"/><geometry><cylinder radius="0.0012" length="0.006797653937262963"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0026 0.1007 0.2606" rpy="0.0000 0.9530 3.1154"/><geometry><cylinder radius="0.0012" length="0.006797653937262957"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0026 0.1007 0.2644" rpy="0.0000 0.9530 -3.1154"/><geometry><cylinder radius="0.0012" length="0.006797653937262963"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0079 0.1005 0.2681" rpy="0.0000 0.9530 -3.0631"/><geometry><cylinder radius="0.0012" length="0.006797653937262996"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0132 0.0999 0.2719" rpy="0.0000 0.9530 -3.0107"/><geometry><cylinder radius="0.0012" length="0.006797653937262963"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0184 0.0991 0.2756" rpy="0.0000 0.9530 -2.9583"/><geometry><cylinder radius="0.0012" length="0.0067976539372629615"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0235 0.0980 0.2794" rpy="0.0000 0.9530 -2.9060"/><geometry><cylinder radius="0.0012" length="0.006797653937262977"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0286 0.0966 0.2831" rpy="0.0000 0.9530 -2.8536"/><geometry><cylinder radius="0.0012" length="0.006797653937262961"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0336 0.0950 0.2869" rpy="0.0000 0.9530 -2.8013"/><geometry><cylinder radius="0.0012" length="0.006797653937262996"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0386 0.0931 0.2906" rpy="0.0000 0.9530 -2.7489"/><geometry><cylinder radius="0.0012" length="0.006797653937262941"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0434 0.0909 0.2944" rpy="0.0000 0.9530 -2.6965"/><geometry><cylinder radius="0.0012" length="0.006797653937262996"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0481 0.0886 0.2981" rpy="0.0000 0.9530 -2.6442"/><geometry><cylinder radius="0.0012" length="0.006797653937262948"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0526 0.0859 0.3019" rpy="0.0000 0.9530 -2.5918"/><geometry><cylinder radius="0.0012" length="0.006797653937262941"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0571 0.0830 0.3056" rpy="0.0000 0.9530 -2.5395"/><geometry><cylinder radius="0.0012" length="0.006797653937263017"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0613 0.0799 0.3094" rpy="0.0000 0.9530 -2.4871"/><geometry><cylinder radius="0.0012" length="0.006797653937262984"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0654 0.0766 0.3131" rpy="0.0000 0.9530 -2.4347"/><geometry><cylinder radius="0.0012" length="0.006797653937262942"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0694 0.0731 0.3169" rpy="0.0000 0.9530 -2.3824"/><geometry><cylinder radius="0.0012" length="0.006797653937262986"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0731 0.0694 0.3206" rpy="0.0000 0.9530 -2.3300"/><geometry><cylinder radius="0.0012" length="0.006797653937262969"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0766 0.0654 0.3244" rpy="0.0000 0.9530 -2.2777"/><geometry><cylinder radius="0.0012" length="0.006797653937263017"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0799 0.0613 0.3281" rpy="0.0000 0.9530 -2.2253"/><geometry><cylinder radius="0.0012" length="0.006797653937262935"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0830 0.0571 0.3319" rpy="0.0000 0.9530 -2.1729"/><geometry><cylinder radius="0.0012" length="0.006797653937262945"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0859 0.0526 0.3356" rpy="0.0000 0.9530 -2.1206"/><geometry><cylinder radius="0.0012" length="0.006797653937263023"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0886 0.0481 0.3394" rpy="0.0000 0.9530 -2.0682"/><geometry><cylinder radius="0.0012" length="0.006797653937262936"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0909 0.0434 0.3431" rpy="0.0000 0.9530 -2.0159"/><geometry><cylinder radius="0.0012" length="0.006797653937262984"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0931 0.0386 0.3469" rpy="0.0000 0.9530 -1.9635"/><geometry><cylinder radius="0.0012" length="0.006797653937262974"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0950 0.0336 0.3506" rpy="0.0000 0.9530 -1.9111"/><geometry><cylinder radius="0.0012" length="0.006797653937262982"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0966 0.0286 0.3544" rpy="0.0000 0.9530 -1.8588"/><geometry><cylinder radius="0.0012" length="0.006797653937262947"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0980 0.0235 0.3581" rpy="0.0000 0.9530 -1.8064"/><geometry><cylinder radius="0.0012" length="0.006797653937262974"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0991 0.0184 0.3619" rpy="0.0000 0.9530 -1.7541"/><geometry><cylinder radius="0.0012" length="0.006797653937262975"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0999 0.0132 0.3656" rpy="0.0000 0.9530 -1.7017"/><geometry><cylinder radius="0.0012" length="0.006797653937262984"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.1005 0.0079 0.3694" rpy="0.0000 0.9530 -1.6493"/><geometry><cylinder radius="0.0012" length="0.0067976539372629425"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.1007 0.0026 0.3731" rpy="0.0000 0.9530 -1.5970"/><geometry><cylinder radius="0.0012" length="0.006797653937262938"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.1007 -0.0026 0.3769" rpy="0.0000 0.9530 -1.5446"/><geometry><cylinder radius="0.0012" length="0.0067976539372629815"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.1005 -0.0079 0.3806" rpy="0.0000 0.9530 -1.4923"/><geometry><cylinder radius="0.0012" length="0.006797653937262975"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0999 -0.0132 0.3844" rpy="0.0000 0.9530 -1.4399"/><geometry><cylinder radius="0.0012" length="0.00679765393726298"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0991 -0.0184 0.3881" rpy="0.0000 0.9530 -1.3875"/><geometry><cylinder radius="0.0012" length="0.0067976539372629815"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0980 -0.0235 0.3919" rpy="0.0000 0.9530 -1.3352"/><geometry><cylinder radius="0.0012" length="0.006797653937262943"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0966 -0.0286 0.3956" rpy="0.0000 0.9530 -1.2828"/><geometry><cylinder radius="0.0012" length="0.00679765393726298"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0950 -0.0336 0.3994" rpy="0.0000 0.9530 -1.2305"/><geometry><cylinder radius="0.0012" length="0.006797653937262973"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0931 -0.0386 0.4031" rpy="0.0000 0.9530 -1.1781"/><geometry><cylinder radius="0.0012" length="0.006797653937263021"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0909 -0.0434 0.4069" rpy="0.0000 0.9530 -1.1257"/><geometry><cylinder radius="0.0012" length="0.006797653937262908"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0886 -0.0481 0.4106" rpy="0.0000 0.9530 -1.0734"/><geometry><cylinder radius="0.0012" length="0.00679765393726297"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0859 -0.0526 0.4144" rpy="0.0000 0.9530 -1.0210"/><geometry><cylinder radius="0.0012" length="0.006797653937263023"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0830 -0.0571 0.4181" rpy="0.0000 0.9530 -0.9687"/><geometry><cylinder radius="0.0012" length="0.006797653937262905"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0799 -0.0613 0.4219" rpy="0.0000 0.9530 -0.9163"/><geometry><cylinder radius="0.0012" length="0.0067976539372629815"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0766 -0.0654 0.4256" rpy="0.0000 0.9530 -0.8639"/><geometry><cylinder radius="0.0012" length="0.006797653937263008"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0731 -0.0694 0.4294" rpy="0.0000 0.9530 -0.8116"/><geometry><cylinder radius="0.0012" length="0.006797653937262986"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0694 -0.0731 0.4331" rpy="0.0000 0.9530 -0.7592"/><geometry><cylinder radius="0.0012" length="0.006797653937262969"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0654 -0.0766 0.4369" rpy="0.0000 0.9530 -0.7069"/><geometry><cylinder radius="0.0012" length="0.006797653937262907"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0613 -0.0799 0.4406" rpy="0.0000 0.9530 -0.6545"/><geometry><cylinder radius="0.0012" length="0.006797653937263021"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0571 -0.0830 0.4444" rpy="0.0000 0.9530 -0.6021"/><geometry><cylinder radius="0.0012" length="0.00679765393726301"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0526 -0.0859 0.4481" rpy="0.0000 0.9530 -0.5498"/><geometry><cylinder radius="0.0012" length="0.00679765393726287"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0481 -0.0886 0.4519" rpy="0.0000 0.9530 -0.4974"/><geometry><cylinder radius="0.0012" length="0.006797653937263024"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0434 -0.0909 0.4556" rpy="0.0000 0.9530 -0.4451"/><geometry><cylinder radius="0.0012" length="0.006797653937262937"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0386 -0.0931 0.4594" rpy="0.0000 0.9530 -0.3927"/><geometry><cylinder radius="0.0012" length="0.006797653937263085"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0336 -0.0950 0.4631" rpy="0.0000 0.9530 -0.3403"/><geometry><cylinder radius="0.0012" length="0.006797653937262945"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0286 -0.0966 0.4669" rpy="0.0000 0.9530 -0.2880"/><geometry><cylinder radius="0.0012" length="0.006797653937262947"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0235 -0.0980 0.4706" rpy="0.0000 0.9530 -0.2356"/><geometry><cylinder radius="0.0012" length="0.006797653937262936"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0184 -0.0991 0.4744" rpy="0.0000 0.9530 -0.1833"/><geometry><cylinder radius="0.0012" length="0.0067976539372629485"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0132 -0.0999 0.4781" rpy="0.0000 0.9530 -0.1309"/><geometry><cylinder radius="0.0012" length="0.006797653937262938"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0079 -0.1005 0.4819" rpy="0.0000 0.9530 -0.0785"/><geometry><cylinder radius="0.0012" length="0.006797653937263092"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="-0.0026 -0.1007 0.4856" rpy="0.0000 0.9530 -0.0262"/><geometry><cylinder radius="0.0012" length="0.006797653937262938"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0026 -0.1007 0.4894" rpy="0.0000 0.9530 0.0262"/><geometry><cylinder radius="0.0012" length="0.006797653937262948"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0079 -0.1005 0.4931" rpy="0.0000 0.9530 0.0785"/><geometry><cylinder radius="0.0012" length="0.006797653937262937"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0132 -0.0999 0.4969" rpy="0.0000 0.9530 0.1309"/><geometry><cylinder radius="0.0012" length="0.006797653937263016"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0184 -0.0991 0.5006" rpy="0.0000 0.9530 0.1833"/><geometry><cylinder radius="0.0012" length="0.006797653937263015"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0235 -0.0980 0.5044" rpy="0.0000 0.9530 0.2356"/><geometry><cylinder radius="0.0012" length="0.006797653937262944"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0286 -0.0966 0.5081" rpy="0.0000 0.9530 0.2880"/><geometry><cylinder radius="0.0012" length="0.0067976539372629425"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0336 -0.0950 0.5119" rpy="0.0000 0.9530 0.3403"/><geometry><cylinder radius="0.0012" length="0.00679765393726287"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0386 -0.0931 0.5156" rpy="0.0000 0.9530 0.3927"/><geometry><cylinder radius="0.0012" length="0.006797653937263016"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0434 -0.0909 0.5194" rpy="0.0000 0.9530 0.4451"/><geometry><cylinder radius="0.0012" length="0.006797653937263012"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0481 -0.0886 0.5231" rpy="0.0000 0.9530 0.4974"/><geometry><cylinder radius="0.0012" length="0.006797653937263024"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0526 -0.0859 0.5269" rpy="0.0000 0.9530 0.5498"/><geometry><cylinder radius="0.0012" length="0.006797653937262932"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0571 -0.0830 0.5306" rpy="0.0000 0.9530 0.6021"/><geometry><cylinder radius="0.0012" length="0.0067976539372629425"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0613 -0.0799 0.5344" rpy="0.0000 0.9530 0.6545"/><geometry><cylinder radius="0.0012" length="0.006797653937262942"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0654 -0.0766 0.5381" rpy="0.0000 0.9530 0.7069"/><geometry><cylinder radius="0.0012" length="0.006797653937263093"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0694 -0.0731 0.5419" rpy="0.0000 0.9530 0.7592"/><geometry><cylinder radius="0.0012" length="0.006797653937262876"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0731 -0.0694 0.5456" rpy="0.0000 0.9530 0.8116"/><geometry><cylinder radius="0.0012" length="0.00679765393726302"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0766 -0.0654 0.5494" rpy="0.0000 0.9530 0.8639"/><geometry><cylinder radius="0.0012" length="0.006797653937262932"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0799 -0.0613 0.5531" rpy="0.0000 0.9530 0.9163"/><geometry><cylinder radius="0.0012" length="0.006797653937263012"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0830 -0.0571 0.5569" rpy="0.0000 0.9530 0.9687"/><geometry><cylinder radius="0.0012" length="0.006797653937262946"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0859 -0.0526 0.5606" rpy="0.0000 0.9530 1.0210"/><geometry><cylinder radius="0.0012" length="0.006797653937263024"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0886 -0.0481 0.5644" rpy="0.0000 0.9530 1.0734"/><geometry><cylinder radius="0.0012" length="0.006797653937262938"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0909 -0.0434 0.5681" rpy="0.0000 0.9530 1.1257"/><geometry><cylinder radius="0.0012" length="0.006797653937262945"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0931 -0.0386 0.5719" rpy="0.0000 0.9530 1.1781"/><geometry><cylinder radius="0.0012" length="0.006797653937262936"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0950 -0.0336 0.5756" rpy="0.0000 0.9530 1.2305"/><geometry><cylinder radius="0.0012" length="0.006797653937263023"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0966 -0.0286 0.5794" rpy="0.0000 0.9530 1.2828"/><geometry><cylinder radius="0.0012" length="0.006797653937263011"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0980 -0.0235 0.5831" rpy="0.0000 0.9530 1.3352"/><geometry><cylinder radius="0.0012" length="0.006797653937262948"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0991 -0.0184 0.5869" rpy="0.0000 0.9530 1.3875"/><geometry><cylinder radius="0.0012" length="0.006797653937262935"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.0999 -0.0132 0.5906" rpy="0.0000 0.9530 1.4399"/><geometry><cylinder radius="0.0012" length="0.006797653937263018"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.1005 -0.0079 0.5944" rpy="0.0000 0.9530 1.4923"/><geometry><cylinder radius="0.0012" length="0.006797653937262938"/></geometry><material name="chalk"/></visual>
+    <visual><origin xyz="0.1007 -0.0026 0.5981" rpy="0.0000 0.9530 1.5446"/><geometry><cylinder radius="0.0012" length="0.0067976539372628705"/></geometry><material name="chalk"/></visual>
   </link>
   <joint name="positioner_joint_2" type="revolute">
     <parent link="positioner_link_1"/><child link="positioner_link_2"/>
@@ -325,7 +325,7 @@
       <p_gain>20</p_gain>
       <cmd_max>6</cmd_max>
       <cmd_min>-6</cmd_min>
-      <initial_position>-0.092269</initial_position>
+      <initial_position>-0.113009</initial_position>
     </plugin>
     <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
       <joint_name>joint_2</joint_name>
@@ -334,7 +334,7 @@
       <p_gain>20</p_gain>
       <cmd_max>6</cmd_max>
       <cmd_min>-6</cmd_min>
-      <initial_position>1.481181</initial_position>
+      <initial_position>1.291963</initial_position>
     </plugin>
     <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
       <joint_name>joint_3</joint_name>
@@ -343,7 +343,7 @@
       <p_gain>20</p_gain>
       <cmd_max>6</cmd_max>
       <cmd_min>-6</cmd_min>
-      <initial_position>0.568264</initial_position>
+      <initial_position>0.443313</initial_position>
     </plugin>
     <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
       <joint_name>joint_4</joint_name>
@@ -352,7 +352,7 @@
       <p_gain>20</p_gain>
       <cmd_max>6</cmd_max>
       <cmd_min>-6</cmd_min>
-      <initial_position>-1.232109</initial_position>
+      <initial_position>-1.223285</initial_position>
     </plugin>
     <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
       <joint_name>joint_5</joint_name>
@@ -361,7 +361,7 @@
       <p_gain>20</p_gain>
       <cmd_max>6</cmd_max>
       <cmd_min>-6</cmd_min>
-      <initial_position>-1.681016</initial_position>
+      <initial_position>-1.715083</initial_position>
     </plugin>
     <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
       <joint_name>joint_6</joint_name>
@@ -370,7 +370,7 @@
       <p_gain>20</p_gain>
       <cmd_max>6</cmd_max>
       <cmd_min>-6</cmd_min>
-      <initial_position>-1.309277</initial_position>
+      <initial_position>-1.365807</initial_position>
     </plugin>
   </gazebo>
 </robot>

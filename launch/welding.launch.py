@@ -44,6 +44,9 @@ def generate_launch_description():
                                      'bead': LaunchConfiguration('bead'),
                                      'csv': LaunchConfiguration('trajectory')}])
 
+    panel = Node(package='comrob2021_welding', executable='control_panel.py',
+                 condition=IfCondition(LaunchConfiguration('panel')))
+
     rviz = Node(package='rviz2', executable='rviz2', condition=IfCondition(LaunchConfiguration('rviz')),
                 arguments=['-d', os.path.join(share, 'config', 'welding.rviz')], parameters=[sim])
 
@@ -51,7 +54,8 @@ def generate_launch_description():
         DeclareLaunchArgument('gui', default_value='true'),
         DeclareLaunchArgument('world', default_value=os.path.join(share, 'worlds', 'welding_cell.sdf')),
         DeclareLaunchArgument('rviz', default_value='false'),
-        DeclareLaunchArgument('loop', default_value='true'),
+        DeclareLaunchArgument('loop', default_value='false'),
+        DeclareLaunchArgument('panel', default_value='true'),
         DeclareLaunchArgument('bead', default_value='true'),
         DeclareLaunchArgument('spawn', default_value='true'),
         DeclareLaunchArgument('mode', default_value='paper', choices=['paper', 'two_axis']),
@@ -59,5 +63,5 @@ def generate_launch_description():
             os.path.join(share, 'config', ''),
             PythonExpression(["'trajectory.csv' if '", LaunchConfiguration('mode'),
                               "' == 'paper' else 'trajectory_two_axis.csv'"])]),
-        gz, spawn, bridge, rsp, player, rviz,
+        gz, spawn, bridge, rsp, player, panel, rviz,
     ])
