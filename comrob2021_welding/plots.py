@@ -1,6 +1,7 @@
 """Figures of the planned task: positioner and torch angles, robot joints and manipulabilities.
 
 Usage:  python3 -m comrob2021_welding.plots [trajectory.csv] [output.png]
+        python3 -m comrob2021_welding.plots compare
 """
 import sys
 
@@ -35,5 +36,29 @@ def main():
     print(out)
 
 
+def compare(paper='config/trajectory.csv', two='config/trajectory_two_axis.csv',
+            out='media/two_axis.png'):
+    """Paper (fixed tilt) against the study with both positioner axes moving."""
+    a = np.loadtxt(paper, delimiter=',', skiprows=1)
+    b = np.loadtxt(two, delimiter=',', skiprows=1)
+    fig, ax = plt.subplots(1, 3, figsize=(13, 3.6), constrained_layout=True)
+    for d, lab, ls in [(a, 'paper: fixed tilt', '--'), (b, 'study: tilt + rotation', '-')]:
+        ax[0].plot(d[:, 0], np.degrees(d[:, 1]), ls, label=lab)
+        ax[1].plot(d[:, 0], d[:, 10], ls, label=lab)
+        ax[2].plot(d[:, 0], d[:, 11], ls, label=lab)
+    for a_, title in zip(ax, [r'Tilt $\varphi_1$ [deg]', r'Translational $w_T^*$', r'Rotational $w_R$']):
+        a_.set_title(title)
+        a_.set_xlabel('t [s]')
+        a_.grid(alpha=0.3)
+        a_.legend(fontsize=8)
+    ax[1].set_ylim(0, 1.05)
+    ax[2].set_ylim(0, 1.05)
+    fig.savefig(out, dpi=130)
+    print(out)
+
+
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == 'compare':
+        compare()
+    else:
+        main()

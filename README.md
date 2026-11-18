@@ -1,6 +1,8 @@
 # Welding Robot and 2-DOF Positioner: Gazebo Simulation
 
-Gazebo simulation based on the paper *Optimal Motions of a Welding Robot for Cooperative Tasks with a 2 DOF Positioner* (COMRob 2021). A Fanuc ARC Mate 100iC robot applies a helical welding seam on a cylinder while a 2-DOF positioner table rotates the workpiece. Both machines move at the same time, and the motions are chosen so that the robot keeps good translational and rotational manipulability during the whole task.
+Gazebo simulation based on the paper *Optimal Motions of a Welding Robot for Cooperative Tasks with a 2 DOF Positioner* (COMRob 2021). A Fanuc ARC Mate 100iC robot applies a helical welding seam on a pipe while a 2-DOF tilt-rotate positioner turns the pipe. Both machines move at the same time, and the motions are chosen so that the robot keeps good translational and rotational manipulability during the whole task.
+
+The repository also includes a study that is not in the paper: the tilt axis of the positioner moves too, see [Study: both axes of the positioner](#study-both-axes-of-the-positioner).
 
 ![Welding task in Gazebo](media/welding.gif)
 
@@ -56,13 +58,21 @@ source ~/ws_comrob2021/install/setup.bash
 ros2 launch comrob2021_welding welding.launch.py
 ```
 
-Gazebo opens after a few seconds. After 3 s the task starts: the positioner turns the cylinder one full turn in 40 s while the torch follows the red seam. When it ends, it waits 2 s and starts again. To close everything, press `Ctrl+C` in the terminal.
+Gazebo opens after a few seconds. The first time it also downloads some free models of the cell (shelves, pallets, a cabinet) from [Gazebo Fuel](https://app.gazebosim.org), so it needs internet. After 3 s the task starts: the positioner turns the pipe one full turn in 40 s while the torch follows the white chalk line, and the weld bead grows behind the arc. When it ends, it waits 2 s and starts again. To close everything, press `Ctrl+C` in the terminal.
 
 | Argument | Values | Default | What it does |
 |---|---|---|---|
+| `mode` | `paper`, `two_axis` | `paper` | Trajectories of the paper, or of the study with both positioner axes |
 | `gui` | `true`, `false` | `true` | Show the Gazebo window |
 | `loop` | `true`, `false` | `true` | Repeat the task when it ends |
+| `bead` | `true`, `false` | `true` | Draw the weld bead and the arc |
 | `rviz` | `true`, `false` | `false` | Also open RViz |
+
+For example, the study with both axes:
+
+```bash
+ros2 launch comrob2021_welding welding.launch.py mode:=two_axis
+```
 
 ## Computing the trajectories again
 
@@ -77,6 +87,27 @@ cd ~/ws_comrob2021 && colcon build --symlink-install
 
 ![Trajectories and manipulabilities](media/results.png)
 
+## Study: both axes of the positioner
+
+In the paper only the rotation of the positioner (φ₂) moves. The tilt φ₁ stays at 10.4° during the whole task, because the paper found that moving it is not needed. This study checks what happens if the tilt also moves.
+
+The tilt φ₁(t) is a smooth curve through six values, at t = 0, 8, 16, 24, 32 and 40 s, with zero speed at the start and at the end. The six values are chosen by an optimizer (Nelder-Mead) that minimizes the same objective of the paper, equation (24), with the same φ₂(t) and ψ(t). The tilt is limited to ±45°.
+
+| | Paper (fixed tilt) | Study (tilt + rotation) |
+|---|---|---|
+| Objective f, eq. (24) | −0.828 | −0.910 |
+| Lowest w_T* | 0.38 | 0.68 |
+| Lowest w_R | 0.97 | 0.93 |
+
+![Paper against the study](media/two_axis.png)
+
+Moving the tilt improves the translational manipulability at the start of the task, where the paper has its lowest value, and costs a little rotational manipulability. The tilt goes from −17° to 29°. To compute it again (about 1 minute):
+
+```bash
+python3 -m comrob2021_welding.planner config/ two_axis
+python3 -m comrob2021_welding.plots compare
+```
+
 ## How it works
 
 `comrob2021_welding/planner.py` follows Sections II to IV of the paper:
@@ -87,13 +118,14 @@ cd ~/ws_comrob2021 && colcon build --symlink-install
 4. **Robot.** For each instant, equation (7) gives the pose that the robot must reach, and numerical inverse kinematics gives its six joints.
 5. **Performance.** The translational and rotational manipulabilities (equations 11 to 15) are computed along the task.
 
-The ROS node `trajectory_player.py` reads `config/trajectory.csv` and sends one position command per joint to Gazebo at 100 Hz, through `ros_gz_bridge`. Gazebo publishes the joint states back, so `robot_state_publisher` and RViz show the same motion.
+The ROS node `trajectory_player.py` reads the trajectory file and sends one position command per joint to Gazebo at 100 Hz, through `ros_gz_bridge`. Gazebo publishes the joint states back, so `robot_state_publisher` and RViz show the same motion. The same node draws the weld bead with Gazebo markers (`comrob2021_welding/bead.py`): a tube along the part of the seam already welded, which turns with the pipe, with its last part glowing and a flickering arc at the torch tip.
 
 ## Differences from the paper
 
 - **Inverse kinematics.** The paper uses Paul's method. Here a numerical method (damped least squares) is used, starting from the best posture at t = 0.
 - **Rotational manipulability** stays near 1, as in the paper. The **translational manipulability** is near 1 most of the time, but it drops during the first 3 s, when ψ changes from 40° to −18.4°. The paper does not give the frame of the workpiece on the table or the exact torch matrix, so they were assumed and may be the reason.
-- **Robot model.** The meshes are from the ROS-Industrial model of the Fanuc M-10iA, which is the same arm as the ARC Mate 100iC. The positioner, the torch and the workpiece are simple shapes with the dimensions of the paper.
+- **Robot model.** The meshes are from the ROS-Industrial model of the Fanuc M-10iA, which is the same arm as the ARC Mate 100iC. The positioner is my own design, in the style of industrial single-sided tilt-rotate positioners, with the kinematics of Table II. The torch and the pipe are simple shapes with the dimensions of the paper.
+- **Weld bead.** It is only a drawing. Gazebo does not simulate the welding process.
 - **No dynamics.** Gazebo has no gravity here and moves the joints to the planned positions. It shows the kinematics of the task, not the forces.
 
 ## Files
@@ -101,12 +133,15 @@ The ROS node `trajectory_player.py` reads `config/trajectory.csv` and sends one 
 | Path | Content |
 |---|---|
 | `comrob2021_welding/planner.py` | Kinematic models, time functions, inverse kinematics and manipulabilities |
-| `comrob2021_welding/plots.py` | Figure of the trajectories and manipulabilities |
+| `comrob2021_welding/plots.py` | Figures of the trajectories, manipulabilities and the study |
+| `comrob2021_welding/bead.py` | Weld bead and arc drawn with Gazebo markers |
+| `scripts/gen_urdf.py` | Writes `urdf/welding_cell.urdf` (robot, torch, positioner and pipe) |
 | `nodes/trajectory_player.py` | ROS 2 node that plays the trajectories in Gazebo |
 | `launch/welding.launch.py` | Starts Gazebo, the bridge and the nodes |
 | `urdf/welding_cell.urdf` | Robot, torch, positioner and workpiece |
 | `worlds/welding_cell.sdf` | Gazebo world |
-| `config/trajectory.csv` | Planned trajectories (40 s, 801 samples) |
+| `config/trajectory.csv` | Planned trajectories of the paper (40 s, 801 samples) |
+| `config/trajectory_two_axis.csv` | Planned trajectories of the study with both axes |
 
 ## Citation
 
@@ -127,4 +162,9 @@ Paper: [IEEE Xplore](https://ieeexplore.ieee.org/document/9628721) · [PDF](http
 
 ## License
 
-Apache License 2.0, see `LICENSE`. The meshes of the robot are from [ROS-Industrial](https://github.com/ros-industrial/fanuc) (BSD-3-Clause), see `NOTICE`.
+Apache License 2.0, see `LICENSE`. The meshes of the robot are from [ROS-Industrial](https://github.com/ros-industrial/fanuc) (BSD-3-Clause), see `NOTICE`. The models of the cell are downloaded from Gazebo Fuel, with their own licenses.
+
+## Troubleshooting
+
+- **The bead does not appear.** It is drawn in the Gazebo window and in camera sensors only. Check that `bead:=true`.
+- **Gazebo is very slow with `gui:=false` on a laptop with an NVIDIA card.** Gazebo may render with the CPU. Run `export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json` before launching.

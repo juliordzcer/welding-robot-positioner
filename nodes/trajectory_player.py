@@ -6,6 +6,8 @@ Reads config/trajectory.csv (made by comrob2021_welding.planner), waits
 joint to Gazebo, interpolated at `rate` Hz. With `loop` true the task repeats.
 """
 import os
+import threading
+import time
 
 import numpy as np
 import rclpy
@@ -25,6 +27,7 @@ class TrajectoryPlayer(Node):
         self.declare_parameter('start_delay', 3.0)
         self.declare_parameter('rate', 100.0)
         self.declare_parameter('loop', True)
+        self.declare_parameter('bead', True)
         data = np.loadtxt(self.get_parameter('csv').value, delimiter=',', skiprows=1)
         self.t = data[:, 0]
         # unwrap so joints never jump by 2*pi between samples
@@ -34,6 +37,12 @@ class TrajectoryPlayer(Node):
         self.pubs = [self.create_publisher(Float64, f'/welding/{j}/cmd_pos', 10) for j in JOINTS]
         self.t0 = None
         self.create_timer(1.0 / self.get_parameter('rate').value, self.step)
+        self.tau = 0.0
+        self.bead = None
+        if self.get_parameter('bead').value:
+            from comrob2021_welding.bead import Bead
+            self.bead = Bead()
+            threading.Thread(target=self.draw_loop, daemon=True).start()
         self.get_logger().info(f'Trajectory of {self.t[-1]:.0f} s loaded, {len(self.t)} samples')
 
     def step(self):
@@ -46,8 +55,23 @@ class TrajectoryPlayer(Node):
             self.t0 = now - self.delay
             tau = 0.0
         tau = min(max(tau, 0.0), T)
+        self.tau = tau
         for k, pub in enumerate(self.pubs):
             pub.publish(Float64(data=float(np.interp(tau, self.t, self.q[:, k]))))
+
+
+    def draw_loop(self):
+        """Draws the weld bead in its own thread, so Gazebo calls never delay the joints."""
+        last = None
+        while rclpy.ok():
+            tau = self.tau
+            if last is not None and tau < last:
+                self.bead.clear()
+            if tau != last:
+                self.bead.update(tau, float(np.interp(tau, self.t, self.q[:, 0])),
+                                 float(np.interp(tau, self.t, self.q[:, 1])))
+            last = tau
+            time.sleep(0.2)
 
 
 def main():

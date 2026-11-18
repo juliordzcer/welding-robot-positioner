@@ -140,9 +140,9 @@ def torch_on_workpiece(t):
     return hom(zyz(np.pi + lam, 90 * D2R, psi(t)), p)
 
 
-def desired_tool(t):
+def desired_tool(t, phi1=PHI1):
     """^e T_h through the positioner, eq. (6)."""
-    return T_E_M0 @ positioner(PHI1, phi2(t)) @ T_M2_K @ torch_on_workpiece(t)
+    return T_E_M0 @ positioner(phi1, phi2(t)) @ T_M2_K @ torch_on_workpiece(t)
 
 
 # ------------------------------------------------------------------ IK
@@ -175,11 +175,11 @@ def ik(Td, q0, iters=200, tol=1e-9):
     return q, e @ e < 1e-6
 
 
-def first_posture():
+def first_posture(phi1=PHI1):
     """IK solution at t = 0 with the best manipulability (smallest joint angles on ties)."""
     rng = np.random.default_rng(0)
     best, best_w = None, -1
-    Td = desired_tool(0.0)
+    Td = desired_tool(0.0, phi1)
     for _ in range(400):
         q0 = rng.uniform(-np.pi, np.pi, 6)
         q, ok = ik(Td, q0)
@@ -218,26 +218,88 @@ def torch_in_flange():
     return R, p
 
 
-def plan(n=801):
+def mixed(wt, wr):
+    """Mixed manipulability of one path point, eq. (25)."""
+    pair = np.array([wt, wr])
+    return pair.mean() - pair.std()
+
+
+def objective(w):
+    """Eq. (24): f = -(mean - std) of the mixed manipulabilities."""
+    w = np.asarray(w)
+    return -(w.mean() - w.std())
+
+
+_Q0 = {}
+
+
+def plan(n=801, phi1_fn=lambda t: PHI1):
+    """Joint trajectories for the task. phi1_fn gives the tilt of the positioner."""
     t = np.linspace(0, T_TASK, n)
-    q = first_posture()
+    if 'q' not in _Q0:
+        _Q0['q'] = first_posture()
+    q, ok = ik(desired_tool(0.0, phi1_fn(0.0)), _Q0['q'])   # same posture family as the paper
+    if not ok:
+        raise RuntimeError("IK failed at t=0")
     rows = []
     for ti in t:
-        q, ok = ik(desired_tool(ti), q)
+        p1 = phi1_fn(ti)
+        q, ok = ik(desired_tool(ti, p1), q)
         if not ok:
             raise RuntimeError(f"IK failed at t={ti:.2f}s")
         wt, wr = manipulabilities(q)
-        rows.append([ti, PHI1, phi2(ti), psi(ti), *dh_to_urdf(q), wt, wr])
+        rows.append([ti, p1, phi2(ti), psi(ti), *dh_to_urdf(q), wt, wr])
     return np.array(rows)
+
+
+# ------------------------------------------- study: both positioner axes
+KNOTS = np.linspace(0, T_TASK, 6)
+PHI1_LIM = 45 * D2R
+
+
+def phi1_spline(values):
+    """Smooth tilt phi1(t) through the knot values, zero velocity at both ends."""
+    from scipy.interpolate import CubicSpline
+    cs = CubicSpline(KNOTS, values, bc_type='clamped')
+    return lambda t: float(np.clip(cs(t), -PHI1_LIM, PHI1_LIM))
+
+
+def score(phi1_fn, n=81):
+    """Objective (24) of a tilt function, on n samples of the task."""
+    try:
+        d = plan(n, phi1_fn)
+    except RuntimeError:
+        return 1.0
+    if np.any(np.abs(np.diff(np.unwrap(d[:, 4:10], axis=0), axis=0)) > 0.4):  # change of posture
+        return 1.0
+    return objective([mixed(a, b) for a, b in zip(d[:, 10], d[:, 11])])
+
+
+def optimize_two_axis():
+    from scipy.optimize import minimize
+    x0 = np.full(len(KNOTS), PHI1)
+    res = minimize(lambda x: score(phi1_spline(x)), x0, method='Nelder-Mead',
+                   options={'maxiter': 400, 'xatol': 1e-3, 'fatol': 1e-5})
+    return res.x, res.fun
 
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."
+    study = len(sys.argv) > 2 and sys.argv[2] == "two_axis"
     os.makedirs(out, exist_ok=True)
-    data = plan()
     hdr = "t,phi1,phi2,psi,joint_1,joint_2,joint_3,joint_4,joint_5,joint_6,wT,wR"
-    np.savetxt(os.path.join(out, "trajectory.csv"), data, delimiter=",", header=hdr, comments="")
-    print(f"min wT* = {data[:, 10].min():.3f}, min wR = {data[:, 11].min():.3f}")
+    if study:
+        x, f = optimize_two_axis()
+        print("phi1 knots [deg]:", np.round(np.degrees(x), 2), " f =", round(f, 4))
+        data = plan(phi1_fn=phi1_spline(x))
+        name = "trajectory_two_axis.csv"
+    else:
+        data = plan()
+        name = "trajectory.csv"
+    np.savetxt(os.path.join(out, name), data, delimiter=",", header=hdr, comments="")
+    w = [mixed(a, b) for a, b in zip(data[:, 10], data[:, 11])]
+    print(f"{name}: f = {objective(w):.4f}, min wT* = {data[:, 10].min():.3f}, "
+          f"min wR = {data[:, 11].min():.3f}")
 
 
 if __name__ == "__main__":

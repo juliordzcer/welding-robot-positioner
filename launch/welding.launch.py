@@ -27,6 +27,7 @@ def generate_launch_description():
                           'on_exit_shutdown': 'true'}.items())
 
     spawn = Node(package='ros_gz_sim', executable='create', output='screen',
+                 condition=IfCondition(LaunchConfiguration('spawn')),
                  arguments=['-name', 'welding_cell', '-topic', 'robot_description'])
 
     bridge_args = ['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
@@ -39,7 +40,9 @@ def generate_launch_description():
                parameters=[{'robot_description': urdf}, sim])
 
     player = Node(package='comrob2021_welding', executable='trajectory_player.py', output='screen',
-                  parameters=[sim, {'loop': LaunchConfiguration('loop')}])
+                  parameters=[sim, {'loop': LaunchConfiguration('loop'),
+                                     'bead': LaunchConfiguration('bead'),
+                                     'csv': LaunchConfiguration('trajectory')}])
 
     rviz = Node(package='rviz2', executable='rviz2', condition=IfCondition(LaunchConfiguration('rviz')),
                 arguments=['-d', os.path.join(share, 'config', 'welding.rviz')], parameters=[sim])
@@ -49,5 +52,12 @@ def generate_launch_description():
         DeclareLaunchArgument('world', default_value=os.path.join(share, 'worlds', 'welding_cell.sdf')),
         DeclareLaunchArgument('rviz', default_value='false'),
         DeclareLaunchArgument('loop', default_value='true'),
+        DeclareLaunchArgument('bead', default_value='true'),
+        DeclareLaunchArgument('spawn', default_value='true'),
+        DeclareLaunchArgument('mode', default_value='paper', choices=['paper', 'two_axis']),
+        DeclareLaunchArgument('trajectory', default_value=[
+            os.path.join(share, 'config', ''),
+            PythonExpression(["'trajectory.csv' if '", LaunchConfiguration('mode'),
+                              "' == 'paper' else 'trajectory_two_axis.csv'"])]),
         gz, spawn, bridge, rsp, player, rviz,
     ])
