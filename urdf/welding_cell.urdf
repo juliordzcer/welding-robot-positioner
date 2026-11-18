@@ -1,0 +1,354 @@
+<?xml version="1.0"?>
+<!-- Welding cell of the paper "Optimal Motions of a Welding Robot for
+     Cooperative Tasks with a 2 DOF Positioner" (COMRob 2021).
+     World frame = workstation frame Sigma_e of the paper.
+     Robot meshes: ROS-Industrial fanuc_m10ia_support (BSD-3-Clause). -->
+<robot name="welding_cell">
+  <material name="fanuc_yellow"><color rgba="0.96 0.76 0.13 1"/></material>
+  <material name="fanuc_gray"><color rgba="0.4 0.4 0.4 1"/></material>
+  <material name="fanuc_black"><color rgba="0.15 0.15 0.15 1"/></material>
+  <material name="steel"><color rgba="0.62 0.64 0.67 1"/></material>
+  <material name="dark"><color rgba="0.22 0.24 0.27 1"/></material>
+  <material name="blue"><color rgba="0.13 0.33 0.62 1"/></material>
+  <material name="seam"><color rgba="0.85 0.25 0.1 1"/></material>
+  <material name="copper"><color rgba="0.8 0.45 0.2 1"/></material>
+
+  <link name="world"/>
+
+  <!-- Pedestal of the robot: Sigma_0 is 0.45 m above Sigma_e (eq. 2) -->
+  <joint name="world_to_base" type="fixed">
+    <parent link="world"/><child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="pedestal">
+    <inertial><mass value="1.0"/><inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/></inertial>
+    <visual><origin xyz="0 0 -0.375"/><geometry><box size="0.45 0.45 0.75"/></geometry><material name="dark"/></visual>
+  </link>
+  <joint name="world_to_pedestal" type="fixed">
+    <parent link="world"/><child link="pedestal"/><origin xyz="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <inertial><mass value="1.0"/><inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/></inertial>
+    <visual><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/visual/base_link.stl"/></geometry><material name="fanuc_gray"/></visual>
+    <collision><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/collision/base_link.stl"/></geometry></collision>
+  </link>
+  <link name="link_1">
+    <inertial><mass value="1.0"/><inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/></inertial>
+    <visual><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/visual/link_1.stl"/></geometry><material name="fanuc_yellow"/></visual>
+    <collision><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/collision/link_1.stl"/></geometry></collision>
+  </link>
+  <link name="link_2">
+    <inertial><mass value="1.0"/><inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/></inertial>
+    <visual><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/visual/link_2.stl"/></geometry><material name="fanuc_yellow"/></visual>
+    <collision><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/collision/link_2.stl"/></geometry></collision>
+  </link>
+  <link name="link_3">
+    <inertial><mass value="1.0"/><inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/></inertial>
+    <visual><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/visual/link_3.stl"/></geometry><material name="fanuc_yellow"/></visual>
+    <collision><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/collision/link_3.stl"/></geometry></collision>
+  </link>
+  <link name="link_4">
+    <inertial><mass value="1.0"/><inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/></inertial>
+    <visual><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/visual/link_4.stl"/></geometry><material name="fanuc_yellow"/></visual>
+    <collision><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/collision/link_4.stl"/></geometry></collision>
+  </link>
+  <link name="link_5">
+    <inertial><mass value="1.0"/><inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/></inertial>
+    <visual><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/visual/link_5.stl"/></geometry><material name="fanuc_yellow"/></visual>
+    <collision><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/collision/link_5.stl"/></geometry></collision>
+  </link>
+  <link name="link_6">
+    <inertial><mass value="1.0"/><inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/></inertial>
+    <visual><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/visual/link_6.stl"/></geometry><material name="fanuc_black"/></visual>
+    <collision><geometry><mesh filename="package://comrob2021_welding/meshes/m10ia/collision/link_6.stl"/></geometry></collision>
+  </link>
+  <joint name="joint_1" type="revolute">
+    <parent link="base_link"/><child link="link_1"/>
+    <origin xyz="0 0 0.450" rpy="0 0 0"/><axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="1000" velocity="10"/>
+  </joint>
+  <joint name="joint_2" type="revolute">
+    <parent link="link_1"/><child link="link_2"/>
+    <origin xyz="0.150 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="2.79" effort="1000" velocity="10"/>
+  </joint>
+  <joint name="joint_3" type="revolute">
+    <parent link="link_2"/><child link="link_3"/>
+    <origin xyz="0 0 0.600" rpy="0 0 0"/><axis xyz="0 -1 0"/>
+    <limit lower="-3.14" upper="4.61" effort="1000" velocity="10"/>
+  </joint>
+  <joint name="joint_4" type="revolute">
+    <parent link="link_3"/><child link="link_4"/>
+    <origin xyz="0 0 0.200" rpy="0 0 0"/><axis xyz="-1 0 0"/>
+    <limit lower="-3.31" upper="3.31" effort="1000" velocity="10"/>
+  </joint>
+  <joint name="joint_5" type="revolute">
+    <parent link="link_4"/><child link="link_5"/>
+    <origin xyz="0.640 0 0" rpy="0 0 0"/><axis xyz="0 -1 0"/>
+    <limit lower="-3.31" upper="3.31" effort="1000" velocity="10"/>
+  </joint>
+  <joint name="joint_6" type="revolute">
+    <parent link="link_5"/><child link="link_6"/>
+    <origin xyz="0.100 0 0" rpy="0 0 0"/><axis xyz="-1 0 0"/>
+    <limit lower="-6.28" upper="6.28" effort="1000" velocity="10"/>
+  </joint>
+
+  <!-- Welding torch (Fig. 2): tip at 0.504 m from the wrist centre, bent 22 deg -->
+  <link name="torch">
+    <inertial><mass value="0.5"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+    <visual><origin xyz="0.025 0 0" rpy="0 1.5708 0"/><geometry><cylinder radius="0.045" length="0.05"/></geometry><material name="dark"/></visual>
+    <visual><origin xyz="0.17 0 0" rpy="0 1.5708 0"/><geometry><cylinder radius="0.02" length="0.26"/></geometry><material name="dark"/></visual>
+    <visual><origin xyz="0.352 0 -0.0249" rpy="0 2.0184 0"/><geometry><cylinder radius="0.016" length="0.115"/></geometry><material name="copper"/></visual>
+  </link>
+  <joint name="link_6_to_torch" type="fixed">
+    <parent link="link_6"/><child link="torch"/><origin xyz="0 0 0"/>
+  </joint>
+  <link name="torch_tip">
+    <inertial><mass value="0.01"/><inertia ixx="1e-05" ixy="0" ixz="0" iyy="1e-05" iyz="0" izz="1e-05"/></inertial>
+    <visual><geometry><sphere radius="0.008"/></geometry><material name="seam"/></visual>
+  </link>
+  <joint name="torch_to_tip" type="fixed">
+    <parent link="torch"/><child link="torch_tip"/>
+    <origin xyz="0.4040 0 -0.0498" rpy="3.14159265 -1.18682389 0"/>
+  </joint>
+
+  <!-- 2-DOF positioner. Sigma_m0 placed with eq. (3) -->
+  <link name="positioner_stand">
+    <inertial><mass value="1.0"/><inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/></inertial>
+    <visual><origin xyz="1.2 0.5 -0.73"/><geometry><box size="0.9 0.6 0.04"/></geometry><material name="dark"/></visual>
+    <visual><origin xyz="0.83 0.5 -0.37"/><geometry><box size="0.12 0.2 0.72"/></geometry><material name="blue"/></visual>
+    <visual><origin xyz="1.57 0.5 -0.37"/><geometry><box size="0.12 0.2 0.72"/></geometry><material name="blue"/></visual>
+  </link>
+  <joint name="world_to_stand" type="fixed">
+    <parent link="world"/><child link="positioner_stand"/><origin xyz="0 0 0"/>
+  </joint>
+  <link name="positioner_base">
+    <inertial><mass value="1.0"/><inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/></inertial>
+    <visual><origin xyz="0 0 -0.37"/><geometry><cylinder radius="0.06" length="0.05"/></geometry><material name="steel"/></visual>
+    <visual><origin xyz="0 0 0.37"/><geometry><cylinder radius="0.06" length="0.05"/></geometry><material name="steel"/></visual>
+  </link>
+  <joint name="stand_to_base" type="fixed">
+    <parent link="world"/><child link="positioner_base"/>
+    <origin xyz="1.2 0.5 -0.01" rpy="1.57079633 0 1.57079633"/>
+  </joint>
+  <link name="positioner_link_1">
+    <inertial><mass value="5"/><inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/></inertial>
+    <visual><origin xyz="0 0 0" rpy="0 0 0"/><geometry><cylinder radius="0.035" length="0.74"/></geometry><material name="steel"/></visual>
+    <visual><origin xyz="0 0.035 0"/><geometry><box size="0.3 0.07 0.3"/></geometry><material name="blue"/></visual>
+    <visual><origin xyz="0 0.085 0" rpy="1.5708 0 0"/><geometry><cylinder radius="0.12" length="0.05"/></geometry><material name="dark"/></visual>
+  </link>
+  <joint name="positioner_joint_1" type="revolute">
+    <parent link="positioner_base"/><child link="positioner_link_1"/>
+    <origin xyz="0 0 0"/><axis xyz="0 0 1"/>
+    <limit lower="-1.57" upper="1.57" effort="1000" velocity="2"/>
+  </joint>
+  <link name="positioner_link_2">
+    <inertial><mass value="5"/><inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/></inertial>
+    <visual><origin xyz="0 0 -0.015"/><geometry><cylinder radius="0.25" length="0.03"/></geometry><material name="steel"/></visual>
+    <visual><origin xyz="0.2 0 0.0"/><geometry><box size="0.04 0.04 0.012"/></geometry><material name="dark"/></visual>
+    <visual><origin xyz="0 0 0.225"/><geometry><cylinder radius="0.1" length="0.45"/></geometry><material name="steel"/></visual>
+    <visual><origin xyz="0.10143 0.00266 0.00188" rpy="0 0.95626 1.59698"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.10115 0.00796 0.00563" rpy="0 0.95626 1.64934"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.10060 0.01324 0.00938" rpy="0 0.95626 1.70170"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09977 0.01849 0.01313" rpy="0 0.95626 1.75406"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09866 0.02369 0.01688" rpy="0 0.95626 1.80642"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09729 0.02882 0.02063" rpy="0 0.95626 1.85878"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09565 0.03387 0.02438" rpy="0 0.95626 1.91114"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09374 0.03883 0.02813" rpy="0 0.95626 1.96350"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09158 0.04368 0.03188" rpy="0 0.95626 2.01586"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.08917 0.04842 0.03562" rpy="0 0.95626 2.06822"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.08651 0.05302 0.03938" rpy="0 0.95626 2.12058"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.08362 0.05747 0.04313" rpy="0 0.95626 2.17293"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.08050 0.06177 0.04688" rpy="0 0.95626 2.22529"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.07715 0.06590 0.05063" rpy="0 0.95626 2.27765"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.07360 0.06984 0.05437" rpy="0 0.95626 2.33001"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.06984 0.07360 0.05813" rpy="0 0.95626 2.38237"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.06590 0.07715 0.06187" rpy="0 0.95626 2.43473"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.06177 0.08050 0.06562" rpy="0 0.95626 2.48709"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.05747 0.08362 0.06937" rpy="0 0.95626 2.53945"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.05302 0.08651 0.07312" rpy="0 0.95626 2.59181"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.04842 0.08917 0.07687" rpy="0 0.95626 2.64417"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.04368 0.09158 0.08063" rpy="0 0.95626 2.69653"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.03883 0.09374 0.08438" rpy="0 0.95626 2.74889"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.03387 0.09565 0.08813" rpy="0 0.95626 2.80125"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.02882 0.09729 0.09188" rpy="0 0.95626 2.85361"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.02369 0.09866 0.09563" rpy="0 0.95626 2.90597"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.01849 0.09977 0.09938" rpy="0 0.95626 2.95833"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.01324 0.10060 0.10312" rpy="0 0.95626 3.01069"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.00796 0.10115 0.10687" rpy="0 0.95626 3.06305"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.00266 0.10143 0.11063" rpy="0 0.95626 3.11541"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.00266 0.10143 0.11438" rpy="0 0.95626 -3.11541"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.00796 0.10115 0.11813" rpy="0 0.95626 -3.06305"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.01324 0.10060 0.12188" rpy="0 0.95626 -3.01069"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.01849 0.09977 0.12562" rpy="0 0.95626 -2.95833"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.02369 0.09866 0.12938" rpy="0 0.95626 -2.90597"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.02882 0.09729 0.13312" rpy="0 0.95626 -2.85361"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.03387 0.09565 0.13687" rpy="0 0.95626 -2.80125"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.03883 0.09374 0.14062" rpy="0 0.95626 -2.74889"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.04368 0.09158 0.14438" rpy="0 0.95626 -2.69653"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.04842 0.08917 0.14813" rpy="0 0.95626 -2.64417"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.05302 0.08651 0.15187" rpy="0 0.95626 -2.59181"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.05747 0.08362 0.15563" rpy="0 0.95626 -2.53945"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.06177 0.08050 0.15938" rpy="0 0.95626 -2.48709"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.06590 0.07715 0.16313" rpy="0 0.95626 -2.43473"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.06984 0.07360 0.16687" rpy="0 0.95626 -2.38237"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.07360 0.06984 0.17062" rpy="0 0.95626 -2.33001"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.07715 0.06590 0.17438" rpy="0 0.95626 -2.27765"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.08050 0.06177 0.17813" rpy="0 0.95626 -2.22529"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.08362 0.05747 0.18188" rpy="0 0.95626 -2.17293"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.08651 0.05302 0.18562" rpy="0 0.95626 -2.12058"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.08917 0.04842 0.18938" rpy="0 0.95626 -2.06822"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09158 0.04368 0.19312" rpy="0 0.95626 -2.01586"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09374 0.03883 0.19688" rpy="0 0.95626 -1.96350"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09565 0.03387 0.20062" rpy="0 0.95626 -1.91114"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09729 0.02882 0.20438" rpy="0 0.95626 -1.85878"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09866 0.02369 0.20813" rpy="0 0.95626 -1.80642"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09977 0.01849 0.21188" rpy="0 0.95626 -1.75406"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.10060 0.01324 0.21563" rpy="0 0.95626 -1.70170"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.10115 0.00796 0.21937" rpy="0 0.95626 -1.64934"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.10143 0.00266 0.22313" rpy="0 0.95626 -1.59698"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.10143 -0.00266 0.22687" rpy="0 0.95626 -1.54462"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.10115 -0.00796 0.23062" rpy="0 0.95626 -1.49226"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.10060 -0.01324 0.23438" rpy="0 0.95626 -1.43990"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09977 -0.01849 0.23813" rpy="0 0.95626 -1.38754"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09866 -0.02369 0.24188" rpy="0 0.95626 -1.33518"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09729 -0.02882 0.24562" rpy="0 0.95626 -1.28282"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09565 -0.03387 0.24938" rpy="0 0.95626 -1.23046"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09374 -0.03883 0.25313" rpy="0 0.95626 -1.17810"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.09158 -0.04368 0.25687" rpy="0 0.95626 -1.12574"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.08917 -0.04842 0.26062" rpy="0 0.95626 -1.07338"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.08651 -0.05302 0.26438" rpy="0 0.95626 -1.02102"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.08362 -0.05747 0.26812" rpy="0 0.95626 -0.96866"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.08050 -0.06177 0.27187" rpy="0 0.95626 -0.91630"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.07715 -0.06590 0.27563" rpy="0 0.95626 -0.86394"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.07360 -0.06984 0.27938" rpy="0 0.95626 -0.81158"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.06984 -0.07360 0.28313" rpy="0 0.95626 -0.75922"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.06590 -0.07715 0.28687" rpy="0 0.95626 -0.70686"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.06177 -0.08050 0.29063" rpy="0 0.95626 -0.65450"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.05747 -0.08362 0.29438" rpy="0 0.95626 -0.60214"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.05302 -0.08651 0.29812" rpy="0 0.95626 -0.54978"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.04842 -0.08917 0.30188" rpy="0 0.95626 -0.49742"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.04368 -0.09158 0.30563" rpy="0 0.95626 -0.44506"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.03883 -0.09374 0.30938" rpy="0 0.95626 -0.39270"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.03387 -0.09565 0.31313" rpy="0 0.95626 -0.34034"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.02882 -0.09729 0.31688" rpy="0 0.95626 -0.28798"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.02369 -0.09866 0.32062" rpy="0 0.95626 -0.23562"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.01849 -0.09977 0.32437" rpy="0 0.95626 -0.18326"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.01324 -0.10060 0.32812" rpy="0 0.95626 -0.13090"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.00796 -0.10115 0.33188" rpy="0 0.95626 -0.07854"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="-0.00266 -0.10143 0.33563" rpy="0 0.95626 -0.02618"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.00266 -0.10143 0.33937" rpy="0 0.95626 0.02618"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.00796 -0.10115 0.34313" rpy="0 0.95626 0.07854"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.01324 -0.10060 0.34687" rpy="0 0.95626 0.13090"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.01849 -0.09977 0.35063" rpy="0 0.95626 0.18326"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.02369 -0.09866 0.35437" rpy="0 0.95626 0.23562"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.02882 -0.09729 0.35813" rpy="0 0.95626 0.28798"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.03387 -0.09565 0.36188" rpy="0 0.95626 0.34034"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.03883 -0.09374 0.36562" rpy="0 0.95626 0.39270"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.04368 -0.09158 0.36938" rpy="0 0.95626 0.44506"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.04842 -0.08917 0.37313" rpy="0 0.95626 0.49742"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.05302 -0.08651 0.37688" rpy="0 0.95626 0.54978"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.05747 -0.08362 0.38062" rpy="0 0.95626 0.60214"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.06177 -0.08050 0.38438" rpy="0 0.95626 0.65450"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.06590 -0.07715 0.38813" rpy="0 0.95626 0.70686"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.06984 -0.07360 0.39187" rpy="0 0.95626 0.75922"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.07360 -0.06984 0.39563" rpy="0 0.95626 0.81158"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.07715 -0.06590 0.39938" rpy="0 0.95626 0.86394"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.08050 -0.06177 0.40313" rpy="0 0.95626 0.91630"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.08362 -0.05747 0.40688" rpy="0 0.95626 0.96866"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.08651 -0.05302 0.41063" rpy="0 0.95626 1.02102"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.08917 -0.04842 0.41437" rpy="0 0.95626 1.07338"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09158 -0.04368 0.41812" rpy="0 0.95626 1.12574"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09374 -0.03883 0.42188" rpy="0 0.95626 1.17810"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09565 -0.03387 0.42563" rpy="0 0.95626 1.23046"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09729 -0.02882 0.42938" rpy="0 0.95626 1.28282"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09866 -0.02369 0.43312" rpy="0 0.95626 1.33518"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.09977 -0.01849 0.43688" rpy="0 0.95626 1.38754"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.10060 -0.01324 0.44062" rpy="0 0.95626 1.43990"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.10115 -0.00796 0.44438" rpy="0 0.95626 1.49226"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+    <visual><origin xyz="0.10143 -0.00266 0.44812" rpy="0 0.95626 1.54462"/><geometry><cylinder radius="0.004" length="0.00683"/></geometry><material name="seam"/></visual>
+  </link>
+  <joint name="positioner_joint_2" type="revolute">
+    <parent link="positioner_link_1"/><child link="positioner_link_2"/>
+    <origin xyz="0 0.130 0" rpy="-1.57079633 0 0"/><axis xyz="0 0 1"/>
+    <limit lower="-6.3" upper="6.3" effort="1000" velocity="2"/>
+  </joint>
+  <gazebo>
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <topic>/welding/joint_states</topic>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>positioner_joint_1</joint_name>
+      <topic>/welding/positioner_joint_1/cmd_pos</topic>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>20</p_gain>
+      <cmd_max>6</cmd_max>
+      <cmd_min>-6</cmd_min>
+      <initial_position>0.181514</initial_position>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>positioner_joint_2</joint_name>
+      <topic>/welding/positioner_joint_2/cmd_pos</topic>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>20</p_gain>
+      <cmd_max>6</cmd_max>
+      <cmd_min>-6</cmd_min>
+      <initial_position>3.141593</initial_position>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>joint_1</joint_name>
+      <topic>/welding/joint_1/cmd_pos</topic>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>20</p_gain>
+      <cmd_max>6</cmd_max>
+      <cmd_min>-6</cmd_min>
+      <initial_position>-0.092269</initial_position>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>joint_2</joint_name>
+      <topic>/welding/joint_2/cmd_pos</topic>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>20</p_gain>
+      <cmd_max>6</cmd_max>
+      <cmd_min>-6</cmd_min>
+      <initial_position>1.481181</initial_position>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>joint_3</joint_name>
+      <topic>/welding/joint_3/cmd_pos</topic>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>20</p_gain>
+      <cmd_max>6</cmd_max>
+      <cmd_min>-6</cmd_min>
+      <initial_position>0.568264</initial_position>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>joint_4</joint_name>
+      <topic>/welding/joint_4/cmd_pos</topic>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>20</p_gain>
+      <cmd_max>6</cmd_max>
+      <cmd_min>-6</cmd_min>
+      <initial_position>-1.232109</initial_position>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>joint_5</joint_name>
+      <topic>/welding/joint_5/cmd_pos</topic>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>20</p_gain>
+      <cmd_max>6</cmd_max>
+      <cmd_min>-6</cmd_min>
+      <initial_position>-1.681016</initial_position>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>joint_6</joint_name>
+      <topic>/welding/joint_6/cmd_pos</topic>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>20</p_gain>
+      <cmd_max>6</cmd_max>
+      <cmd_min>-6</cmd_min>
+      <initial_position>-1.309277</initial_position>
+    </plugin>
+  </gazebo>
+</robot>

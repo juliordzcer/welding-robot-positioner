@@ -1,0 +1,6 @@
+Welding robot and 2-DOF positioner: Gazebo simulation
+Copyright 2026 Julio Cesar Rodriguez Cervantes
+
+This product includes the meshes of the Fanuc M-10iA (ARC Mate 100iC)
+from ROS-Industrial fanuc_m10ia_support (https://github.com/ros-industrial/fanuc),
+BSD-3-Clause license, see meshes/m10ia/LICENSE-ros-industrial-fanuc.

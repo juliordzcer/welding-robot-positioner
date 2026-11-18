@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this simulation, please cite the paper below."
+title: "Welding robot and 2-DOF positioner: Gazebo simulation"
+authors:
+  - family-names: "Rodríguez Cervantes"
+    given-names: "Julio Cesar"
+repository-code: "https://github.com/juliordzcer/welding-robot-positioner"
+license: Apache-2.0
+preferred-citation:
+  type: conference-paper
+  title: "Optimal Motions of a Welding Robot for Cooperative Tasks with a 2 DOF Positioner"
+  authors:
+    - family-names: "Santellano"
+      given-names: "O. I."
+    - family-names: "Pámanes"
+      given-names: "J. A."
+    - family-names: "Rodríguez"
+      given-names: "J. C."
+    - family-names: "Pámanes"
+      given-names: "J. J."
+  collection-title: "2021 XXIII Robotics Mexican Congress (ComRob)"
+  location:
+    name: "Tijuana, Baja California, México"
+  start: 145
+  end: 151
+  year: 2021
+  url: "https://ieeexplore.ieee.org/document/9628721"
