@@ -1,0 +1,227 @@
+{
+ "layout": {
+  "paper_place_f": -0.9884012675187955,
+  "best_place": [
+   0.0,
+   -0.2
+  ],
+  "best_f": -0.9892100284769979
+ },
+ "paper_place": {
+  "base_offset_m": [
+   0.0,
+   0.0
+  ],
+  "seams": {
+   "A+": {
+    "f": -0.9901,
+    "tilt_deg": -52.4,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.99,
+    "wR_min": 1.0,
+    "gap_min_mm": 22.0
+   },
+   "A-": {
+    "f": -0.98,
+    "tilt_deg": 57.6,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.98,
+    "wR_min": 0.98,
+    "gap_min_mm": 20.0
+   },
+   "B+": {
+    "f": -0.9775,
+    "tilt_deg": 120.0,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.977,
+    "wR_min": 0.987,
+    "gap_min_mm": 21.0
+   },
+   "B-": {
+    "f": -0.9772,
+    "tilt_deg": 120.4,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.977,
+    "wR_min": 1.0,
+    "gap_min_mm": 20.0
+   },
+   "C+": {
+    "f": -0.993,
+    "tilt_deg": 103.5,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.993,
+    "wR_min": 0.993,
+    "gap_min_mm": 19.0
+   },
+   "C-": {
+    "f": -0.9967,
+    "tilt_deg": 103.9,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.997,
+    "wR_min": 0.997,
+    "gap_min_mm": 21.0
+   },
+   "D+": {
+    "f": -0.993,
+    "tilt_deg": 103.5,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.993,
+    "wR_min": 0.993,
+    "gap_min_mm": 19.0
+   },
+   "D-": {
+    "f": -0.9967,
+    "tilt_deg": 103.9,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.997,
+    "wR_min": 0.997,
+    "gap_min_mm": 21.0
+   }
+  },
+  "best_order": [
+   "D+",
+   "B-",
+   "C-",
+   "A-"
+  ],
+  "cycle_s": 178.8,
+  "naive_cycle_s": 182.4,
+  "arc_time_s": 163.1
+ },
+ "best_place": {
+  "base_offset_m": [
+   0.0,
+   -0.2
+  ],
+  "seams": {
+   "A+": {
+    "f": -0.986,
+    "tilt_deg": -40.6,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.986,
+    "wR_min": 0.989,
+    "gap_min_mm": 22.0
+   },
+   "A-": {
+    "f": -0.9821,
+    "tilt_deg": 35.3,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.982,
+    "wR_min": 0.995,
+    "gap_min_mm": 21.0
+   },
+   "B+": {
+    "f": -0.9787,
+    "tilt_deg": 120.1,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.979,
+    "wR_min": 0.994,
+    "gap_min_mm": 21.0
+   },
+   "B-": {
+    "f": -0.9775,
+    "tilt_deg": 120.5,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.977,
+    "wR_min": 0.997,
+    "gap_min_mm": 20.0
+   },
+   "C+": {
+    "f": -0.9964,
+    "tilt_deg": 103.3,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.996,
+    "wR_min": 0.996,
+    "gap_min_mm": 18.0
+   },
+   "C-": {
+    "f": -0.9985,
+    "tilt_deg": 103.1,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.998,
+    "wR_min": 0.999,
+    "gap_min_mm": 22.0
+   },
+   "D+": {
+    "f": -0.9964,
+    "tilt_deg": 103.3,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.996,
+    "wR_min": 0.996,
+    "gap_min_mm": 18.0
+   },
+   "D-": {
+    "f": -0.9985,
+    "tilt_deg": 103.1,
+    "flat_dev_max_deg": 15.0,
+    "wT_min": 0.998,
+    "wR_min": 0.999,
+    "gap_min_mm": 22.0
+   }
+  },
+  "best_order": [
+   "D-",
+   "B+",
+   "C+",
+   "A-"
+  ],
+  "cycle_s": 178.5,
+  "naive_cycle_s": 182.6,
+  "arc_time_s": 163.1
+ },
+ "twin": {
+  "robot2_place": [
+   2.6,
+   0.25
+  ],
+  "tasks": {
+   "AB": {
+    "robot1": "A",
+    "robot2": "B",
+    "f_robot1": -0.9919,
+    "f_robot2": -0.9919,
+    "tilt_deg": 81.9,
+    "face_rotation_max_deg": [
+     36.9,
+     54.8
+    ],
+    "gap_min_mm": 20.0,
+    "robots_gap_min_mm": 105.0
+   },
+   "CD": {
+    "robot1": "D",
+    "robot2": "C",
+    "f_robot1": -0.9205,
+    "f_robot2": -0.9202,
+    "tilt_deg": -76.7,
+    "face_rotation_max_deg": [
+     82.2,
+     97.8
+    ],
+    "gap_min_mm": 15.0,
+    "robots_gap_min_mm": 220.0
+   }
+  },
+  "order": [
+   "AB",
+   "CD"
+  ],
+  "cycle_s": 92.2,
+  "places": {
+   "2.2,0.0": -0.9059,
+   "2.2,0.25": -0.6696,
+   "2.2,0.5": -0.6109,
+   "2.2,0.75": -0.6061,
+   "2.2,1.0": -0.6108,
+   "2.4,0.25": -0.9104,
+   "2.4,0.5": -0.8164,
+   "2.4,0.75": -0.6725,
+   "2.4,1.0": -0.603,
+   "2.6,0.0": -0.7407,
+   "2.6,0.25": -0.9155,
+   "2.6,0.5": -0.9132,
+   "2.6,0.75": -0.7126,
+   "2.6,1.0": -0.6516
+  }
+ }
+}

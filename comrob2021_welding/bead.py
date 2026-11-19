@@ -2,6 +2,8 @@
 
 The bead is a tube along the part of the seam already welded. It is fixed to
 the workpiece, so its points are moved with the positioner at every update.
+By default it follows the helical seam of the paper; the industrial
+applications give their own seams as segments (time, point, normal in frame k).
 """
 import time
 
@@ -48,14 +50,18 @@ def _tube(points, normals):
 
 
 class Bead:
-    def __init__(self):
+    def __init__(self, segments=None):
+        """segments: list of (times, points, normals) of each seam in frame k; None = paper seam."""
         self.node = Node()
         # /marker is served by the Gazebo window, /sensors/marker by the camera sensors
         self.services = ['/marker', '/sensors/marker']
-        self.ts = np.arange(0.0, pl.T_TASK + 1e-9, 0.2)
-        self.pk = np.array([pl.torch_on_workpiece(t)[:3, 3] for t in self.ts])
-        self.nk = self.pk * np.array([1, 1, 0])          # radial direction on the pipe
-        self.nk /= np.linalg.norm(self.nk, axis=1, keepdims=True)
+        if segments is None:
+            ts = np.arange(0.0, pl.T_TASK + 1e-9, 0.2)
+            pk = np.array([pl.torch_on_workpiece(t)[:3, 3] for t in ts])
+            nk = pk * np.array([1, 1, 0])                # radial direction on the pipe
+            nk /= np.linalg.norm(nk, axis=1, keepdims=True)
+            segments = [(ts, pk, nk)]
+        self.segments = segments
         self.rng = np.random.default_rng(0)
         self.active, self.checked = [], -1e9
 
@@ -89,18 +95,28 @@ class Bead:
         """tau: task time [s]; phi1, phi2: positioner angles now [rad]."""
         T = pl.T_E_M0 @ pl.positioner(phi1, phi2) @ pl.T_M2_K
         R, p = T[:3, :3], T[:3, 3]
-        n = int(np.searchsorted(self.ts, tau, side='right'))
-        pts = self.pk[:n] @ R.T + p
-        nrm = self.nk[:n] @ R.T
-        if tau > 0 and tau - self.ts[n - 1] > 1e-3:
-            tip_k = pl.torch_on_workpiece(tau)[:3, 3]
-            pts = np.vstack([pts, R @ tip_k + p])
-            nrm = np.vstack([nrm, R @ (tip_k * [1, 1, 0] / np.linalg.norm(tip_k[:2]))])
-        hot = max(0, len(pts) - int(HOT_TIME / 0.2))
+        parts, tips = [], []                     # (points, normals, hot) of each tube; arc tips
+        for ts, pk, nk in self.segments:
+            if tau <= ts[0]:
+                continue
+            n = int(np.searchsorted(ts, tau, side='right'))
+            P, N = pk[:n], nk[:n]
+            if tau < ts[-1] and tau - ts[n - 1] > 1e-3:     # exact point under the torch
+                w = (tau - ts[n - 1]) / (ts[n] - ts[n - 1])
+                P = np.vstack([P, (1 - w) * pk[n - 1] + w * pk[n]])
+                N = np.vstack([N, (1 - w) * nk[n - 1] + w * nk[n]])
+            pts, nrm = P @ R.T + p, N @ R.T
+            arc = tau < ts[-1]
+            step = (ts[-1] - ts[0]) / max(len(ts) - 1, 1)
+            hot = max(0, len(pts) - int(HOT_TIME / step)) if arc else len(pts)
+            parts.append((pts[:hot + 1], nrm[:hot + 1], False))
+            if arc:
+                parts.append((pts[hot:], nrm[hot:], True))
+                tips.append(pts[-1] + nrm[-1] * 0.004)
         mid = 10
-        for sl, col, em in [(slice(0, hot + 1), (0.32, 0.24, 0.18, 1), None),
-                            (slice(hot, None), (1.0, 0.45, 0.1, 1), (1.0, 0.4, 0.05, 1))]:
-            tris = _tube(pts[sl], nrm[sl])
+        for P, N, is_hot in parts:
+            col, em = ((1.0, 0.45, 0.1, 1), (1.0, 0.4, 0.05, 1)) if is_hot else ((0.32, 0.24, 0.18, 1), None)
+            tris = _tube(P, N)
             for k in range(0, len(tris), CHUNK):     # small messages render reliably
                 m = self._marker(mid, Marker.TRIANGLE_LIST, col, em)
                 m.scale.x = m.scale.y = m.scale.z = 1.0
@@ -110,13 +126,13 @@ class Bead:
                     q.x, q.y, q.z = v
                 self._send(m)
                 mid += 1
-        if 0 < tau < pl.T_TASK:            # arc glow at the torch tip
-            m = self._marker(3, Marker.SPHERE, (1.0, 0.95, 0.75, 0.9), (1.0, 0.9, 0.6, 1))
-            m.pose.position.x, m.pose.position.y, m.pose.position.z = pts[-1] + nrm[-1] * 0.004
-            s = self.rng.uniform(0.012, 0.022)
-            m.scale.x = m.scale.y = m.scale.z = s
-            self._send(m)
-        else:
-            m = Marker()
-            m.ns, m.id, m.action = 'weld', 3, Marker.DELETE_MARKER
+        for k in range(4):                 # arc glow at the torch tips
+            if k < len(tips):
+                m = self._marker(3 + k, Marker.SPHERE, (1.0, 0.95, 0.75, 0.9), (1.0, 0.9, 0.6, 1))
+                m.pose.position.x, m.pose.position.y, m.pose.position.z = tips[k]
+                s = self.rng.uniform(0.012, 0.022)
+                m.scale.x = m.scale.y = m.scale.z = s
+            else:
+                m = Marker()
+                m.ns, m.id, m.action = 'weld', 3 + k, Marker.DELETE_MARKER
             self._send(m)

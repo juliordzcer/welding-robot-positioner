@@ -60,7 +60,8 @@ def main():
             live.config(text=(f"Mode:  {s['mode']}    State: {s['state']}\n"
                               f"t = {s['t']:5.1f} / {s['T']:.0f} s\n"
                               f"Tilt φ1 = {s['phi1_deg']:6.1f}°   Rotation φ2 = {s['phi2_deg']:7.1f}°\n"
-                              f"wT* = {s['wT']:.3f}   wR = {s['wR']:.3f}   gap = {s['gap_mm']:.0f} mm"))
+                              f"wT* = {s['wT']:.3f}   wR = {s['wR']:.3f}   gap = {s['gap_mm']:.0f} mm"
+                              + (f"\nSeam: {s['seam']}" if s.get('seam') else '')))
             bar.coords(fill, 0, 0, 300 * s['t'] / s['T'], 8)
             r = s.get('results')
             if r:
@@ -69,7 +70,9 @@ def main():
                     f"  Objective f (eq. 24): {r['f']}\n"
                     f"  wT*  min {r['wT_min']:.3f}   mean {r['wT_mean']:.3f}\n"
                     f"  wR   min {r['wR_min']:.3f}   mean {r['wR_mean']:.3f}\n"
-                    f"  Smallest torch-chuck gap: {r['clearance_min_mm']:.0f} mm"))
+                    f"  Smallest torch-chuck gap: {r['clearance_min_mm']:.0f} mm"
+                    + (f"\n  Cycle time: {r['duration_s']:.1f} s (arc on {r['arc_s']:.1f} s)"
+                       if s.get('seam') else '')))
             else:
                 result.config(text='')
         root.after(100, refresh)

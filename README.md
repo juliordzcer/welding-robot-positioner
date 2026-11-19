@@ -1,8 +1,13 @@
-# Welding Robot and 2-DOF Positioner: Gazebo Simulation
+# Welding Robot and 2-DOF Positioner: Gazebo Simulation and Industrial Applications
 
 Gazebo simulation based on the paper *Optimal Motions of a Welding Robot for Cooperative Tasks with a 2 DOF Positioner* (COMRob 2021). A Fanuc ARC Mate 100iC robot applies a helical welding seam on a pipe while a 2-DOF tilt-rotate positioner turns the pipe. Both machines move at the same time, and the motions are chosen so that the robot keeps good translational and rotational manipulability during the whole task.
 
-The repository also includes a study that is not in the paper: the tilt axis of the positioner moves too, see [Study: both axes of the positioner](#study-both-axes-of-the-positioner).
+The paper validated the method with experiments on the real robot; it has no Gazebo simulation. The simulation, the code and everything else in this repository are my own work, made after the paper. Besides the reproduction of the paper, the repository includes work that is **not in the paper**:
+
+- [Study: both axes of the positioner](#study-both-axes-of-the-positioner): the tilt axis moves too.
+- [Industrial applications](#industrial-applications-not-in-the-paper): a flanged pipe spool welded in the flat position, the order of its seams for the shortest cycle, the best place for the robot, and a cell with two robots.
+
+If you use this repository, please cite it; if you use the method of the paper, please cite the paper too (see [Citation](#citation)).
 
 ![Welding task in Gazebo](media/welding.gif)
 
@@ -117,6 +122,89 @@ python3 -m comrob2021_welding.planner config/ two_axis
 python3 -m comrob2021_welding.plots compare
 ```
 
+## Industrial applications (not in the paper)
+
+> **These applications are not part of the COMRob 2021 paper.** They are my own extension of its method to tasks of a real welding cell. They reuse the models and the objective of the paper (equation 24), but the workpiece, the rules of the weld positions, the sequencing, the placement study and the cell with two robots are new.
+
+The workpiece is a **flanged pipe spool**: a pipe of radius 100 mm and length 450 mm with a flange at each end, held on a riser on the positioner. It has four seams:
+
+| Seam | Type | Length |
+|---|---|---|
+| A | Fillet weld of the lower flange (circumferential) | 628 mm |
+| B | Fillet weld of the upper flange (circumferential) | 628 mm |
+| C, D | Longitudinal seams of the pipe, at 0° and 180°, ending 50 mm before each flange | 350 mm |
+
+All seams are welded at 12 mm/s with a 10° push angle. The robot and the positioner use the speeds of the Fanuc ARC Mate 100iC and of a typical tilt-rotate positioner (tilt 90°/s, rotation 150°/s), with a cycloidal profile for each move, 0.5 s to start the arc, 0.8 s to fill the crater and a retract of 100 mm between seams.
+
+### 1. Welding in the flat position
+
+The positioner turns the part so that each seam is welded in the **flat position** (AWS A3.0): the bisector of the joint at most 15° from vertical and the seam axis at most 15° from horizontal. For the circumferential seams the rotation φ₂ follows the seam so that the weld point stays at the top. For each seam and direction, Nelder-Mead chooses the tilt φ₁, the rotation offset and the torch angle ψ (a smooth curve through three values) that minimize equation (24), with the torch at least 10 mm from the part, the flanges, the riser and the chuck.
+
+| Seam | f, eq. (24) | Tilt φ₁ | Lowest w_T* | Lowest w_R |
+|---|---|---|---|---|
+| A− | −0.982 | 35° | 0.98 | 1.00 |
+| B+ | −0.979 | 120° | 0.98 | 0.99 |
+| C+, D− | −0.996 / −0.999 | 103° | 1.00 | 1.00 |
+
+(Robot at the best place of application 3; all eight seam directions are in `config/industrial/summary.json`.) Every seam stays within the flat position, with both manipulabilities above 0.97.
+
+### 2. Order of the seams for the shortest cycle
+
+The order and the direction of the four seams change the moves between them. All 4! × 2⁴ = 384 combinations are tried, with the time of each move from the axis speeds and a move through the home posture when the direct move would bring the torch too close to the part.
+
+| | Naive order (A+ B+ C+ D+) | Best order | Saved |
+|---|---|---|---|
+| Robot at the paper's place | 182.4 s | 178.8 s (D+ B− C− A−) | 3.6 s |
+| Robot at the best place | 182.6 s | 178.5 s (D− B+ C+ A−) | 4.1 s |
+
+The arc is on for 163.1 s of the cycle, so the moves are only about 10% of the time. The saving is small for this part, but it grows with the number of seams.
+
+### 3. Place of the robot
+
+The base of the robot is moved on a grid of ±0.3 m around the place of the paper, in steps of 0.1 m, and the four seams are optimized at each place. The best place is 0.2 m to the side of the place of the paper, but it is only slightly better (mean f −0.989 against −0.988): the place of the paper is already a good one. Places closer to the positioner cannot weld all the seams.
+
+![Robot placement](media/industrial_layout.png)
+
+![One robot: cycle](media/industrial_cycle.png)
+
+### 4. Cell with two robots
+
+A second robot, turned 180°, stands on the other side of the positioner and both robots weld at the same time: first the two flange welds (A and B), then the two longitudinal seams (C and D). Since both robots share the positioner, the flange welds are done in the horizontal position and the longitudinal seams with up to 100° of rotation of the joint face (AWS limits for fillet and groove welds), and the two robots keep at least 100 mm between them. The place of the second robot is chosen from a grid of 15 places by the worst objective of the two robots.
+
+| | f robot 1 | f robot 2 | Tilt φ₁ | Smallest gap between robots |
+|---|---|---|---|---|
+| A + B | −0.992 | −0.992 | 82° | 105 mm |
+| D + C | −0.921 | −0.920 | −77° | 220 mm |
+
+The cycle of one spool drops from 178.5 s to **92.2 s**, about half.
+
+![Two robots](media/industrial_twin.png)
+
+### Running and computing again
+
+```bash
+ros2 launch comrob2021_welding industrial.launch.py                          # one robot, best place
+ros2 launch comrob2021_welding industrial.launch.py place:=paper_place       # one robot, place of the paper
+ros2 launch comrob2021_welding industrial.launch.py cell:=twin               # two robots
+```
+
+The other arguments (`gui`, `loop`, `panel`, `bead`) are the same as for `welding.launch.py`. To compute everything again:
+
+```bash
+cd ~/ws_comrob2021/src/welding-robot-positioner
+python3 -m comrob2021_welding.industrial config/industrial --layout   # applications 1 to 3, about 9 minutes on 24 threads
+python3 -m comrob2021_welding.twin config/industrial                  # application 4, about 2 hours (--reuse-place: 17 minutes)
+python3 scripts/gen_urdf.py --industrial
+python3 -m comrob2021_welding.plots industrial
+cd ~/ws_comrob2021 && colcon build --symlink-install
+```
+
+### Limitations
+
+- The collision check uses points along the wrist and the torch against the cylinders of the part, the flanges, the riser and the chuck, and (two robots) the distance between the wrists. The other links of the robots and the arm of the positioner are not checked.
+- The longitudinal seams end 50 mm before the flanges so that the torch fits; a real part would need a different torch angle or a second pass for the ends.
+- The weld positions are checked from the geometry only; the welding process (current, wire, gravity on the pool) is not simulated.
+
 ## How it works
 
 `comrob2021_welding/planner.py` follows Sections II to IV of the paper:
@@ -153,10 +241,27 @@ The ROS node `trajectory_player.py` reads the trajectory file and sends one posi
 | `worlds/welding_cell.sdf` | Gazebo world |
 | `config/trajectory.csv` | Planned trajectories of the paper (40 s, 801 samples) |
 | `config/trajectory_two_axis.csv` | Planned trajectories of the study with both axes |
+| `comrob2021_welding/industrial.py` | Industrial applications 1 to 3: flat-position seams, sequencing and robot placement (not in the paper) |
+| `comrob2021_welding/twin.py` | Industrial application 4: cell with two robots (not in the paper) |
+| `launch/industrial.launch.py` | Starts the industrial cells in Gazebo |
+| `worlds/welding_cell_twin.sdf` | Larger Gazebo world for the cell with two robots |
+| `urdf/welding_cell_industrial_*.urdf` | Cells with the pipe spool (one robot at each place, and two robots) |
+| `config/industrial/` | Trajectories, placement grid and results (`summary.json`) of the industrial applications |
 
 ## Citation
 
-If you use this simulation, please cite the paper:
+The Gazebo simulation, the code, the study of both axes and the industrial applications are my own work. If you use any of them, please cite this repository:
+
+```bibtex
+@software{rodriguez2026welding,
+  author = {Rodr{\'i}guez Cervantes, Julio Cesar},
+  title  = {Welding Robot and 2-{DOF} Positioner: Gazebo Simulation and Industrial Applications},
+  year   = {2026},
+  url    = {https://github.com/juliordzcer/welding-robot-positioner}
+}
+```
+
+If you use the motion planning method of the paper (Sections II to IV, reproduced in `planner.py`), please also cite the paper:
 
 ```bibtex
 @inproceedings{santellano2021optimal,

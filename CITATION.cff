@@ -1,27 +1,40 @@
 cff-version: 1.2.0
-message: "If you use this simulation, please cite the paper below."
-title: "Welding robot and 2-DOF positioner: Gazebo simulation"
+message: >-
+  If you use this software (the Gazebo simulation, the planner code or the
+  industrial applications), please cite it as below. If you use the motion
+  planning method of the COMRob 2021 paper, please also cite the paper
+  listed in the references.
+type: software
+title: "Welding robot and 2-DOF positioner: Gazebo simulation and industrial applications"
 authors:
   - family-names: "Rodríguez Cervantes"
     given-names: "Julio Cesar"
 repository-code: "https://github.com/juliordzcer/welding-robot-positioner"
+url: "https://juliordz.com"
 license: Apache-2.0
-preferred-citation:
-  type: conference-paper
-  title: "Optimal Motions of a Welding Robot for Cooperative Tasks with a 2 DOF Positioner"
-  authors:
-    - family-names: "Santellano"
-      given-names: "O. I."
-    - family-names: "Pámanes"
-      given-names: "J. A."
-    - family-names: "Rodríguez"
-      given-names: "J. C."
-    - family-names: "Pámanes"
-      given-names: "J. J."
-  collection-title: "2021 XXIII Robotics Mexican Congress (ComRob)"
-  location:
-    name: "Tijuana, Baja California, México"
-  start: 145
-  end: 151
-  year: 2021
-  url: "https://ieeexplore.ieee.org/document/9628721"
+date-released: 2026-11-18
+keywords:
+  - robotic welding
+  - positioner
+  - manipulability
+  - ROS 2
+  - Gazebo
+references:
+  - type: conference-paper
+    title: "Optimal Motions of a Welding Robot for Cooperative Tasks with a 2 DOF Positioner"
+    authors:
+      - family-names: "Santellano"
+        given-names: "O. I."
+      - family-names: "Pámanes"
+        given-names: "J. A."
+      - family-names: "Rodríguez"
+        given-names: "J. C."
+      - family-names: "Pámanes"
+        given-names: "J. J."
+    collection-title: "2021 XXIII Robotics Mexican Congress (ComRob)"
+    location:
+      name: "Tijuana, Baja California, México"
+    start: 145
+    end: 151
+    year: 2021
+    url: "https://ieeexplore.ieee.org/document/9628721"
